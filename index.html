@@ -383,6 +383,28 @@
     box-sizing: border-box;
   }
   .websites-scroll.active { cursor: grabbing; user-select: none; }
+  .fullscreen-btn {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    background: rgba(57,47,90,0.9);
+    border: 1px solid rgba(255,175,240,0.3);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+  .fullscreen-btn:hover {
+    background: rgba(57,47,90,1);
+    border-color: var(--pink);
+  }
   .websites-gallery {
     display: grid;
     grid-template-columns: repeat(16, 320px);
@@ -805,6 +827,7 @@
         </a>
 
       </div>
+      <button id="fullscreenBtn" class="fullscreen-btn" title="Toggle Fullscreen">⛶</button>
     </div>
     </section>
 
@@ -962,6 +985,19 @@
     gallery.scrollLeft = scrollLeft - walkX;
     gallery.scrollTop = scrollTop - walkY;
   }, { passive: false });
+
+  // Fullscreen toggle
+  const fullscreenBtn = document.getElementById('fullscreenBtn');
+  fullscreenBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  });
+  document.addEventListener('fullscreenchange', () => {
+    fullscreenBtn.textContent = document.fullscreenElement ? '⛶' : '⛶';
+  });
 </script>
 </body>
 </html>
