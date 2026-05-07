@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alex Morgan — Full-Stack Developer</title>
+<title>Wyatt Bedor — Full-Stack Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -62,6 +62,8 @@
   .layout {
     display: flex;
     min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   /* ── Sidebar ─────────────────────────────────────────────── */
@@ -199,8 +201,9 @@
   .main {
     margin-left: var(--sidebar-w);
     flex: 1;
+    min-width: 0;
+    max-width: calc(100vw - var(--sidebar-w));
     padding: 0 72px 100px;
-    max-width: 860px;
   }
 
   section {
@@ -363,98 +366,88 @@
     z-index: 1;
   }
 
-  /* ── Work ─────────────────────────────────────────────────── */
-  .project-grid {
+  /* ── Websites Gallery ─────────────────────────────────────── */
+  .websites-scroll {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: auto;
+    max-height: 72vh;
+    padding: 24px;
+    background: linear-gradient(180deg, rgba(57,47,90,0.95), rgba(57,47,90,0.85));
+    border: 1px solid rgba(255,175,240,0.15);
+    border-radius: 28px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 30px 80px rgba(0,0,0,0.16);
+    cursor: grab;
+    touch-action: none;
+    box-sizing: border-box;
+  }
+  .websites-scroll.active { cursor: grabbing; user-select: none; }
+  .websites-gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(16, 320px);
+    grid-auto-rows: 220px;
+    gap: 32px;
+    width: max-content;
+    min-width: 5600px;
+    min-height: 1200px;
+    padding: 20px;
   }
 
-  .proj-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 22px 22px 18px;
-    cursor: pointer;
-    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-    position: relative;
+  @media (max-width: 1280px) {
+    .websites-gallery { grid-template-columns: repeat(12, 320px); min-width: 4200px; }
+  }
+  @media (max-width: 1080px) {
+    .websites-gallery { grid-template-columns: repeat(8, 320px); min-width: 2800px; }
+  }
+  @media (max-width: 820px) {
+    .websites-gallery { grid-template-columns: repeat(6, 320px); min-width: 2100px; }
+  }
+  @media (max-width: 600px) {
+    .websites-gallery { grid-template-columns: repeat(4, 320px); min-width: 1400px; }
+  }
+  .website-item {
+    width: 320px;
+    height: 220px;
+    border-radius: 18px;
     overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.25s;
+    background: var(--card-bg);
   }
-  .proj-card::before {
-    content: '';
+  .website-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(57,47,90,0.5);
+  }
+  .website-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .website-overlay {
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--pink), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .proj-card:hover {
-    border-color: var(--border-mid);
-    transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(57,47,90,0.5);
-  }
-  .proj-card:hover::before { opacity: 1; }
-
-  .proj-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
-  }
-
-  .proj-icon {
-    width: 36px; height: 36px;
-    border: 1px solid var(--border-mid);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    color: var(--pink);
-    background: var(--card-bg2);
-  }
-
-  .proj-links {
-    display: flex;
-    gap: 8px;
-  }
-  .proj-link {
-    color: var(--text-muted);
-    font-size: 14px;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .proj-link:hover { color: var(--pink); }
-  .proj-link svg { width: 15px; height: 15px; fill: currentColor; }
-
-  .proj-name {
-    font-size: 15px;
-    font-weight: 600;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(57,47,90,0.9);
     color: var(--text-primary);
-    margin-bottom: 7px;
-    font-family: var(--font-body);
+    padding: 10px;
+    transform: translateY(100%);
+    transition: transform 0.3s;
   }
-
-  .proj-desc {
-    font-size: 12.5px;
+  .website-item:hover .website-overlay {
+    transform: translateY(0);
+  }
+  .website-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .website-desc {
+    font-size: 12px;
     color: var(--text-muted);
-    line-height: 1.55;
-    margin-bottom: 14px;
-  }
-
-  .proj-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .proj-tag {
-    font-size: 10px;
-    font-family: var(--font-mono);
-    color: var(--sage);
-    padding: 3px 9px;
-    border: 1px solid rgba(168,199,187,0.25);
-    border-radius: 4px;
-    letter-spacing: 0.04em;
-    background: rgba(168,199,187,0.05);
   }
 
   /* ── Skills ───────────────────────────────────────────────── */
@@ -581,7 +574,7 @@
   @media (max-width: 860px) {
     .sidebar { display: none; }
     .mobile-nav { display: flex; }
-    .main { margin-left: 0; padding: 80px 28px 80px; }
+    .main { margin-left: 0; padding: 80px 28px 80px; max-width: 100%; width: 100%; }
     .about-grid { grid-template-columns: 1fr; }
     .about-photo { width: 120px; height: 120px; }
     .project-grid { grid-template-columns: 1fr; }
@@ -606,7 +599,7 @@
 
 <!-- Mobile nav -->
 <div class="mobile-nav">
-  <span class="mobile-nav-name">Alex Morgan</span>
+  <span class="mobile-nav-name">Wyatt Bedor</span>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -623,7 +616,7 @@
 
   <!-- Sidebar -->
   <aside class="sidebar">
-    <div class="s-name">Alex<br>Morgan</div>
+    <div class="s-name">Wyatt<br>Bedor</div>
     <div class="s-role">Full-Stack Developer</div>
     <p class="s-tagline">I build fast, accessible digital products with thoughtful UX.</p>
 
@@ -668,7 +661,7 @@
     <!-- 01 Hero -->
     <section id="hero" class="visible">
       <div class="hero-eyebrow">Available for work</div>
-      <h1 class="hero-headline">Hi, I'm<br><span class="accent">Alex Morgan.</span><br>I make things<br>for the web.</h1>
+      <h1 class="hero-headline">Hi, I'm<br><span class="accent">Wyatt Bedor.</span><br>I make things<br>for the web.</h1>
       <p class="hero-sub">A full-stack developer based in New York focused on building beautiful, performant experiences that live at the intersection of design and engineering.</p>
       <a href="#work" class="hero-cta">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l-6-6h12l-6 6z"/></svg>
@@ -687,7 +680,7 @@
           <p>When I'm not shipping code I'm probably reading design history, hiking, or reverse-engineering a UI I admire.</p>
         </div>
         <div class="about-photo">
-          <span class="about-initials">AM</span>
+          <span class="about-initials">WB</span>
         </div>
       </div>
     </section>
@@ -695,82 +688,124 @@
     <!-- 03 Work -->
     <section id="work">
       <div class="sec-num">03 — work</div>
-      <h2 class="sec-title">Featured projects</h2>
-      <div class="project-grid">
-
-        <div class="proj-card">
-          <div class="proj-top">
-            <div class="proj-icon">◈</div>
-            <div class="proj-links">
-              <a href="#" class="proj-link" title="GitHub">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-              </a>
-              <a href="#" class="proj-link" title="Live">
-                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
-              </a>
+      <h2 class="sec-title">Websites</h2>
+      <div class="websites-scroll" id="websitesGallery">
+        <div class="websites-gallery">
+          <a href="#" class="website-item" target="_blank">
+            <img src="https://via.placeholder.com/300x200/4285f4/ffffff?text=Summer+Tainment" alt="Summer Tainment">
+            <div class="website-overlay">
+              <div class="website-title">Summer Tainment</div>
+              <div class="website-desc">Summer entertainment project</div>
             </div>
+          </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/24292e/ffffff?text=Rock+Paper+Scissors" alt="Rock Paper Scissors">
+          <div class="website-overlay">
+            <div class="website-title">Rock Paper Scissors</div>
+            <div class="website-desc">Classic game implementation</div>
           </div>
-          <div class="proj-name">Pulse Dashboard</div>
-          <p class="proj-desc">Real-time analytics UI for SaaS teams with custom chart components and role-based views.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">React</span>
-            <span class="proj-tag">TypeScript</span>
-            <span class="proj-tag">D3</span>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/f48024/ffffff?text=President" alt="President">
+          <div class="website-overlay">
+            <div class="website-title">President</div>
+            <div class="website-desc">Presidential information site</div>
           </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-top">
-            <div class="proj-icon">⬡</div>
-            <div class="proj-links">
-              <a href="#" class="proj-link" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
-              <a href="#" class="proj-link" title="Live"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg></a>
-            </div>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/e50914/ffffff?text=Word-salad" alt="Word-salad">
+          <div class="website-overlay">
+            <div class="website-title">Word-salad</div>
+            <div class="website-desc">Word manipulation tool</div>
           </div>
-          <div class="proj-name">Thyme Store</div>
-          <p class="proj-desc">Full-stack e-commerce platform with inventory management, Stripe payments, and CMS.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Next.js</span>
-            <span class="proj-tag">Postgres</span>
-            <span class="proj-tag">Stripe</span>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/ff9900/ffffff?text=Name+Generator" alt="Name Generator">
+          <div class="website-overlay">
+            <div class="website-title">Name Generator</div>
+            <div class="website-desc">Random name generation tool</div>
           </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-top">
-            <div class="proj-icon">✦</div>
-            <div class="proj-links">
-              <a href="#" class="proj-link" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
-              <a href="#" class="proj-link" title="Live"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg></a>
-            </div>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/000000/ffffff?text=Knicks" alt="Knicks">
+          <div class="website-overlay">
+            <div class="website-title">Knicks</div>
+            <div class="website-desc">New York Knicks fan site</div>
           </div>
-          <div class="proj-name">Waypoint</div>
-          <p class="proj-desc">Collaborative travel planning app with real-time updates, maps API, and shared itineraries.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Vue</span>
-            <span class="proj-tag">Firebase</span>
-            <span class="proj-tag">Mapbox</span>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/00bcff/ffffff?text=Hangman" alt="Hangman">
+          <div class="website-overlay">
+            <div class="website-title">Hangman</div>
+            <div class="website-desc">Classic word guessing game</div>
           </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-top">
-            <div class="proj-icon">◎</div>
-            <div class="proj-links">
-              <a href="#" class="proj-link" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
-              <a href="#" class="proj-link" title="Live"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg></a>
-            </div>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/1877f2/ffffff?text=Magic+8-ball" alt="Magic 8-ball">
+          <div class="website-overlay">
+            <div class="website-title">Magic 8-ball</div>
+            <div class="website-desc">Fortune telling game</div>
           </div>
-          <div class="proj-name">Scribe AI</div>
-          <p class="proj-desc">Meeting transcription and summarization tool using Whisper and GPT-4 with team sharing.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Python</span>
-            <span class="proj-tag">FastAPI</span>
-            <span class="proj-tag">OpenAI</span>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/4285f4/ffffff?text=Look-Ma_I'm_famous-+FBLA" alt="Look-Ma_I'm_famous- FBLA">
+          <div class="website-overlay">
+            <div class="website-title">Look-Ma_I'm_famous- FBLA</div>
+            <div class="website-desc">FBLA project showcase</div>
           </div>
-        </div>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/24292e/ffffff?text=Split+Calculator" alt="Split Calculator">
+          <div class="website-overlay">
+            <div class="website-title">Split Calculator</div>
+            <div class="website-desc">Bill splitting calculator</div>
+          </div>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/f48024/ffffff?text=Schedule" alt="Schedule">
+          <div class="website-overlay">
+            <div class="website-title">Schedule</div>
+            <div class="website-desc">Scheduling application</div>
+          </div>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/e50914/ffffff?text=Bobsdoll-trvel" alt="Bobsdoll-trvel">
+          <div class="website-overlay">
+            <div class="website-title">Bobsdoll-trvel</div>
+            <div class="website-desc">Travel planning site</div>
+          </div>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/ff9900/ffffff?text=College+Site" alt="College Site">
+          <div class="website-overlay">
+            <div class="website-title">College Site</div>
+            <div class="website-desc">College information website</div>
+          </div>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/000000/ffffff?text=Criminology" alt="Criminology">
+          <div class="website-overlay">
+            <div class="website-title">Criminology</div>
+            <div class="website-desc">Criminology study resources</div>
+          </div>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/00bcff/ffffff?text=Track+Site" alt="Track Site">
+          <div class="website-overlay">
+            <div class="website-title">Track Site</div>
+            <div class="website-desc">Track and field information</div>
+          </div>
+        </a>
+        <a href="#" class="website-item" target="_blank">
+          <img src="https://via.placeholder.com/300x200/1877f2/ffffff?text=Winter+Wonderland" alt="Winter Wonderland">
+          <div class="website-overlay">
+            <div class="website-title">Winter Wonderland</div>
+            <div class="website-desc">Winter-themed interactive site</div>
+          </div>
+        </a>
 
       </div>
+    </div>
     </section>
 
     <!-- 04 Skills -->
@@ -816,9 +851,9 @@
       <div class="sec-num">05 — contact</div>
       <h2 class="sec-title">Get in touch</h2>
       <p class="contact-intro">Whether you have a project in mind, a question, or just want to say hello — my inbox is always open.</p>
-      <a href="mailto:hello@alexmorgan.dev" class="contact-email">hello@alexmorgan.dev</a>
+      <a href="mailto:hello@wyattbedor.dev" class="contact-email">hello@wyattbedor.dev</a>
       <br>
-      <a href="mailto:hello@alexmorgan.dev" class="hero-cta" style="margin-top: 8px;">
+      <a href="mailto:hello@wyattbedor.dev" class="hero-cta" style="margin-top: 8px;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
         Say hello
       </a>
@@ -858,11 +893,75 @@
     });
   }, { passive: true });
 
-  // Mobile menu
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-  function closeMobile() { mobileMenu.classList.remove('open'); }
+  // Websites gallery drag
+  const gallery = document.getElementById('websitesGallery');
+  let isDown = false;
+  let startX;
+  let startY;
+  let scrollLeft;
+  let scrollTop;
+
+  gallery.scrollLeft = 0;
+  gallery.scrollTop = 0;
+
+  gallery.addEventListener('pointerdown', (e) => {
+    isDown = true;
+    gallery.classList.add('active');
+    gallery.setPointerCapture(e.pointerId);
+    const rect = gallery.getBoundingClientRect();
+    startX = e.clientX - rect.left;
+    startY = e.clientY - rect.top;
+    scrollLeft = gallery.scrollLeft;
+    scrollTop = gallery.scrollTop;
+  });
+
+  gallery.addEventListener('pointerup', (e) => {
+    isDown = false;
+    gallery.classList.remove('active');
+    gallery.releasePointerCapture(e.pointerId);
+  });
+
+  gallery.addEventListener('pointerleave', () => {
+    isDown = false;
+    gallery.classList.remove('active');
+  });
+
+  gallery.addEventListener('pointermove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const rect = gallery.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const walkX = (x - startX) * 1.5;
+    const walkY = (y - startY) * 1.5;
+    gallery.scrollLeft = scrollLeft - walkX;
+    gallery.scrollTop = scrollTop - walkY;
+  });
+
+  gallery.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    isDown = true;
+    const rect = gallery.getBoundingClientRect();
+    startX = touch.clientX - rect.left;
+    startY = touch.clientY - rect.top;
+    scrollLeft = gallery.scrollLeft;
+    scrollTop = gallery.scrollTop;
+  }, { passive: true });
+
+  gallery.addEventListener('touchend', () => {
+    isDown = false;
+  });
+
+  gallery.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    const touch = e.touches[0];
+    const x = touch.pageX - gallery.offsetLeft;
+    const y = touch.pageY - gallery.offsetTop;
+    const walkX = (x - startX) * 1.5;
+    const walkY = (y - startY) * 1.5;
+    gallery.scrollLeft = scrollLeft - walkX;
+    gallery.scrollTop = scrollTop - walkY;
+  }, { passive: false });
 </script>
 </body>
 </html>
