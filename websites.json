@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "title": "Summer Tainment",
+    "description": "Summer entertainment project",
+    "image": "https://via.placeholder.com/300x200/4285f4/ffffff?text=Summer+Tainment",
+    "url": "https://wyatt987.github.io/Summer-tainment-Site/"
+  },
+  {
+    "id": 2,
+    "title": "Rock Paper Scissors",
+    "description": "Classic game implementation",
+    "image": "https://via.placeholder.com/300x200/24292e/ffffff?text=Rock+Paper+Scissors",
+    "url": "https://wyatt987.github.io/RPS---January/"
+  },
+  {
+    "id": 3,
+    "title": "President",
+    "description": "Presidential information site",
+    "image": "https://via.placeholder.com/300x200/f48024/ffffff?text=President",
+    "url": "https://wyatt987.github.io/Preident3/"
+  },
+  {
+    "id": 4,
+    "title": "Word-salad",
+    "description": "Word manipulation tool",
+    "image": "https://via.placeholder.com/300x200/e50914/ffffff?text=Word-salad",
+    "url": "https://wyatt987.github.io/November-Word-Salad/"
+  },
+  {
+    "id": 5,
+    "title": "Name Generator",
+    "description": "Random name generation tool",
+    "image": "https://via.placeholder.com/300x200/ff9900/ffffff?text=Name+Generator",
+    "url": "https://wyatt987.github.io/Name-Gen/"
+  },
+  {
+    "id": 6,
+    "title": "Knicks",
+    "description": "New York Knicks fan site",
+    "image": "https://via.placeholder.com/300x200/000000/ffffff?text=Knicks",
+    "url": "https://wyatt987.github.io/May---monthly/"
+  },
+  {
+    "id": 7,
+    "title": "Hangman",
+    "description": "Classic word guessing game",
+    "image": "https://via.placeholder.com/300x200/00bcff/ffffff?text=Hangman",
+    "url": "https://wyatt987.github.io/March-Hangman/"
+  },
+  {
+    "id": 8,
+    "title": "Magic 8-ball",
+    "description": "Fortune telling game",
+    "image": "https://via.placeholder.com/300x200/1877f2/ffffff?text=Magic+8-ball",
+    "url": "https://wyatt987.github.io/Magic-8-Ball-Project/"
+  },
+  {
+    "id": 9,
+    "title": "Look-Ma_I'm_famous- FBLA",
+    "description": "FBLA project showcase",
+    "image": "https://via.placeholder.com/300x200/4285f4/ffffff?text=Look-Ma_I'm_famous-+FBLA",
+    "url": "https://wyatt987.github.io/Look-Ma-I-m-Famous/"
+  },
+  {
+    "id": 10,
+    "title": "Split Calculator",
+    "description": "Bill splitting calculator",
+    "image": "https://via.placeholder.com/300x200/24292e/ffffff?text=Split+Calculator",
+    "url": "https://wyatt987.github.io/April---Split/"
+  },
+  {
+    "id": 11,
+    "title": "Schedule",
+    "description": "Scheduling application",
+    "image": "https://via.placeholder.com/300x200/f48024/ffffff?text=Schedule",
+    "url": "https://wyatt987.github.io/To-Do-List/"
+  },
+  {
+    "id": 12,
+    "title": "Bobsdoll-trvel",
+    "description": "Travel planning site",
+    "image": "https://via.placeholder.com/300x200/e50914/ffffff?text=Bobsdoll-trvel",
+    "url": "https://wyatt987.github.io/bobsdoll-travel/"
+  },
+  {
+    "id": 13,
+    "title": "College Site",
+    "description": "College information website",
+    "image": "https://via.placeholder.com/300x200/ff9900/ffffff?text=College+Site",
+    "url": "https://github.com/Wyatt987/Admitly"
+  },
+  {
+    "id": 14,
+    "title": "Criminology",
+    "description": "Criminology study resources",
+    "image": "https://via.placeholder.com/300x200/000000/ffffff?text=Criminology",
+    "url": "https://wyatt987.github.io/Criminology/"
+  },
+  {
+    "id": 15,
+    "title": "Track Site",
+    "description": "Track and field information",
+    "image": "https://via.placeholder.com/300x200/00bcff/ffffff?text=Track+Site",
+    "url": "https://github.com/Wyatt987/April---Split"
+  },
+  {
+    "id": 16,
+    "title": "Winter Wonderland",
+    "description": "Winter-themed interactive site",
+    "image": "https://via.placeholder.com/300x200/1877f2/ffffff?text=Winter+Wonderland",
+    "url": "https://wyatt987.github.io/winter-wonderland/"
+  }
+]
