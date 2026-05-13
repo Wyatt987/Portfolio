@@ -10,7 +10,7 @@
     "id": 2,
     "title": "Rock Paper Scissors",
     "description": "Classic game implementation",
-    "image": "websites/Rock-Paper-Scissors.png",
+    "image": "websites/Rock-Paper-Scissor.png",
     "url": "https://wyatt987.github.io/RPS---January/"
   },
   {
@@ -59,7 +59,7 @@
     "id": 9,
     "title": "Look-Ma_I'm_famous- FBLA",
     "description": "FBLA project showcase",
-    "image": "websites/look-ma-i'm-famous-fbla.png",
+    "image": "websites/Look-Ma-I'm-Famous.png",
     "url": "https://wyatt987.github.io/Look-Ma-I-m-Famous/"
   },
   {
@@ -80,15 +80,8 @@
     "id": 12,
     "title": "Bobsdoll-trvel",
     "description": "Travel planning site",
-    "image": "websites/bobsdoll-trvel.png",
+    "image": "websites/bobs-Doll-travel.png",
     "url": "https://wyatt987.github.io/bobsdoll-travel/"
-  },
-  {
-    "id": 13,
-    "title": "College Site",
-    "description": "College information website",
-    "image": "websites/college-site.png",
-    "url": "https://github.com/Wyatt987/Admitly"
   },
   {
     "id": 14,
@@ -97,11 +90,54 @@
     "image": "websites/criminology.png",
     "url": "https://wyatt987.github.io/Criminology/"
   },
+  
   {
     "id": 15,
     "title": "Track Site",
     "description": "Track and field information",
-    "image": "websites/track-site.png",
+    "image": "websites/track site.png",
     "url": "https://github.com/Wyatt987/April---Split"
+  },
+  {
+    "id": 16,
+    "title": "Italy",
+    "description": "Information on Italy",
+    "image": "websites/Italy.png",
+    "url": "https://replit.com/@WyattBedor/Italy"
+  },
+  {
+    "id": 17,
+    "title": "Italy",
+    "description": "Information on Italy",
+    "image": "websites/Italy.png",
+    "url": "https://replit.com/@WyattBedor/Italy"
+  },
+  {
+    "id": 18,
+    "title": "Our Solar",
+    "description": "Website for Our Solar",
+    "image": "websites/Our-Solar.png",
+    "url": "https://wyatt987.github.io/Our-Solar/"
+  },
+  {
+    "id": 19,
+    "title": "Marlboro Farmer's Market",
+    "description": "Website for Marlboro Farmer's Market",
+    "image": "websites/Marlboro-Farmer's-Market.png",
+    "url": "https://wyatt987.github.io/Marlboro-Farmer's-Market/"
+  },
+  {
+    "id": 20,
+    "title": "Italy",
+    "description": "Information on Italy",
+    "image": "websites/Italy.png",
+    "url": "https://wyatt987.github.io/Italy/"
+  },
+  {
+    "id": 21,
+    "title": "Courtside Coffee",
+    "description": "Website for Courtside Coffee",
+    "image": "websites/Courtside-coffee.png",
+    "url": "https://wyatt987.github.io/Courtside-coffee/"
   }
 ]
