@@ -107,34 +107,20 @@
   },
   {
     "id": 17,
-    "title": "Italy",
-    "description": "Information on Italy",
-    "image": "websites/Italy.png",
-    "url": "https://replit.com/@WyattBedor/Italy"
-  },
-  {
-    "id": 18,
     "title": "Our Solar",
     "description": "Website for Our Solar",
     "image": "websites/Our-Solar.png",
     "url": "https://wyatt987.github.io/Our-Solar/"
   },
   {
-    "id": 19,
+    "id": 18,
     "title": "Marlboro Farmer's Market",
     "description": "Website for Marlboro Farmer's Market",
     "image": "websites/Marlboro-Farmer's-Market.png",
     "url": "https://wyatt987.github.io/Marlboro-Farmer's-Market/"
   },
   {
-    "id": 20,
-    "title": "Italy",
-    "description": "Information on Italy",
-    "image": "websites/Italy.png",
-    "url": "https://wyatt987.github.io/Italy/"
-  },
-  {
-    "id": 21,
+    "id": 19,
     "title": "Courtside Coffee",
     "description": "Website for Courtside Coffee",
     "image": "websites/Courtside-coffee.png",
