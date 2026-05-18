@@ -84,9 +84,48 @@ body.cursor-click #cursor-dot {
 #bg-canvas {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 4;
   pointer-events: none;
   opacity: 0.55;
+}
+#rain-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#glass-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Frosted glass wash over the whole page */
+#frost-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(40, 28, 68, 0.18);
+  backdrop-filter: blur(2px) saturate(130%);
+  -webkit-backdrop-filter: blur(2px) saturate(130%);
+}
+
+@keyframes streakFall {
+  0%   { top: -20%; opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 0.6; }
+  100% { top: 110%; opacity: 0; }
+}
+
+@keyframes blobFall {
+  0%   { top: -5%; opacity: 0; transform: scaleY(0.4) scaleX(1); }
+  8%   { opacity: 1; transform: scaleY(1) scaleX(1); }
+  90%  { opacity: 0.5; }
+  100% { top: 108%; opacity: 0; transform: scaleY(1.3) scaleX(0.8); }
 }
 
 /* ── Noise + vignette ───────────────────────────────────── */
@@ -1065,7 +1104,11 @@ section.visible { opacity: 1; transform: none; }
 
 <!-- Canvas for WebGL particle bg -->
 <canvas id="bg-canvas"></canvas>
-
+<!-- Rain canvas -->
+<canvas id="rain-canvas"></canvas>
+<!-- Glass drip overlay -->
+<div id="glass-overlay"></div>
+<div id="frost-layer"></div>
 <!-- Custom cursor -->
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
@@ -1953,7 +1996,143 @@ const childObs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1 });
 sections.forEach(s => childObs.observe(s));
+/* ================================================================
+   RAIN + GLASS EFFECT
+   ================================================================ */
+(function initRain() {
+  const canvas = document.getElementById('rain-canvas');
+  const ctx = canvas.getContext('2d');
+  const overlay = document.getElementById('glass-overlay');
 
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Rain drop config
+  const DROPS = 180;
+  const drops = Array.from({ length: DROPS }, () => ({
+    x:       Math.random() * window.innerWidth,
+    y:       Math.random() * window.innerHeight,
+    len:     Math.random() * 55 + 15,
+    speed:   Math.random() * 6 + 8,
+    opacity: Math.random() * 0.25 + 0.07,
+    width:   Math.random() * 0.8 + 0.3,
+  }));
+
+  function drawRain() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Subtle deep background wash so rain has something to catch on
+    ctx.fillStyle = 'rgba(30, 18, 52, 0.18)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    drops.forEach(d => {
+      // Main streak
+      const grad = ctx.createLinearGradient(d.x, d.y, d.x + 1.5, d.y + d.len);
+      grad.addColorStop(0,   `rgba(255,255,255,0)`);
+      grad.addColorStop(0.3, `rgba(200,170,230,${d.opacity})`);
+      grad.addColorStop(0.7, `rgba(240,146,221,${d.opacity * 0.7})`);
+      grad.addColorStop(1,   `rgba(255,255,255,0)`);
+
+      ctx.beginPath();
+      ctx.moveTo(d.x, d.y);
+      ctx.lineTo(d.x + 1.5, d.y + d.len);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = d.width;
+      ctx.stroke();
+
+      // Tiny splash dot at tip
+      ctx.beginPath();
+      ctx.arc(d.x + 1, d.y + d.len, d.width * 1.4, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(240,146,221,${d.opacity * 0.5})`;
+      ctx.fill();
+
+      // Move drop
+      d.y += d.speed;
+      d.x += 0.4; // slight diagonal
+
+      if (d.y - d.len > canvas.height || d.x > canvas.width) {
+        d.x     = Math.random() * canvas.width;
+        d.y     = -d.len;
+        d.speed = Math.random() * 6 + 8;
+        d.len   = Math.random() * 55 + 15;
+        d.opacity = Math.random() * 0.25 + 0.07;
+      }
+    });
+
+    requestAnimationFrame(drawRain);
+  }
+  drawRain();
+
+  // ── Glass drip streaks on DOM overlay ──────────────────
+  function spawnStreak() {
+    const x = Math.random() * 100; // % position
+    const dur = Math.random() * 5 + 4; // seconds
+    const delay = Math.random() * 2;
+    const h = Math.random() * 55 + 30; // % height
+    const w = Math.random() * 2 + 1;   // px width
+
+    // Vertical streak
+    const streak = document.createElement('div');
+    streak.style.cssText = `
+      position: absolute;
+      left: ${x}%;
+      top: ${-(h)}%;
+      width: ${w}px;
+      height: ${h}%;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(255,255,255,0.04) 15%,
+        rgba(255,255,255,0.16) 50%,
+        rgba(240,146,221,0.10) 80%,
+        transparent 100%
+      );
+      border-radius: 0 0 40% 40%;
+      filter: blur(0.4px);
+      animation: streakFall ${dur}s ${delay}s linear forwards;
+      pointer-events: none;
+    `;
+    overlay.appendChild(streak);
+
+    // Blob at bottom of streak
+    const bw = Math.random() * 8 + 4;
+    const bh = bw * (Math.random() * 0.5 + 0.7);
+    const blob = document.createElement('div');
+    blob.style.cssText = `
+      position: absolute;
+      left: calc(${x}% - ${bw/2}px);
+      top: ${-(bh)}px;
+      width: ${bw}px;
+      height: ${bh}px;
+      border-radius: 50% 50% 55% 55%;
+      background: radial-gradient(ellipse at 40% 30%,
+        rgba(255,255,255,0.30) 0%,
+        rgba(255,255,255,0.12) 45%,
+        rgba(240,146,221,0.06) 70%,
+        transparent 100%
+      );
+      filter: blur(0.8px);
+      animation: blobFall ${dur + 0.3}s ${delay}s ease-in forwards;
+      pointer-events: none;
+    `;
+    overlay.appendChild(blob);
+
+    // Clean up after animation
+    setTimeout(() => {
+      streak.remove();
+      blob.remove();
+      spawnStreak(); // spawn another to keep it continuous
+    }, (dur + delay + 0.5) * 1000);
+  }
+
+  // Seed initial streaks staggered
+  for (let i = 0; i < 22; i++) {
+    setTimeout(spawnStreak, i * 280);
+  }
+})();
 </script>
 </body>
 </html>
