@@ -1,129 +1,139 @@
-[
-  {
-    "id": 1,
+
+{
+  "sophomore": [
+    {
+          "id": 1,
+          "title": "Marlboro Farmer's Market",
+          "description": "Website for Marlboro Farmer's Market",
+          "image": "websites/Marlboro-Farmer's-Market.png",
+          "url": "https://wyatt987.github.io/Marlboro-Farmer's-Market/"
+  },
+    {
+    "id": 2,
+    "title": "Our Solar",
+    "description": "Website for Our Solar",
+    "image": "websites/Our-Solar.png",
+    "url": "https://wyatt987.github.io/Our-Solar/"
+  },
+    {
+    "id": 3,
+    "title": "Courtside Coffee",
+    "description": "Website for Courtside Coffee",
+    "image": "websites/Courtside-coffee.png",
+    "url": "https://wyatt987.github.io/Courtside-coffee/"
+  },
+    {
+    "id": 4,
+    "title": "Italy",
+    "description": "Information on Italy",
+    "image": "websites/Italy.png",
+    "url": "https://replit.com/@WyattBedor/Italy"
+  },
+    }
+  ],
+  "junior": [
+     {
+    "id": 5,
     "title": "Summer Tainment",
     "description": "Summer entertainment project",
     "image": "websites/Summer Tainment.png",
     "url": "https://wyatt987.github.io/Summer-tainment-Site/"
   },
   {
-    "id": 2,
+    "id": 6,
     "title": "Rock Paper Scissors",
     "description": "Classic game implementation",
     "image": "websites/Rock-Paper-Scissor.png",
     "url": "https://wyatt987.github.io/RPS---January/"
   },
   {
-    "id": 3,
+    "id": 7,
     "title": "President",
     "description": "Presidential information site",
     "image": "websites/president.png",
     "url": "https://wyatt987.github.io/Preident3/"
   },
   {
-    "id": 4,
+    "id": 8,
     "title": "Word-salad",
     "description": "Word manipulation tool",
     "image": "websites/word-salad.png",
     "url": "https://wyatt987.github.io/November-Word-Salad/"
   },
   {
-    "id": 5,
+    "id": 9,
     "title": "Name Generator",
     "description": "Random name generation tool",
     "image": "websites/Name-Gen.png",
     "url": "https://wyatt987.github.io/Name-Gen/"
   },
   {
-    "id": 6,
+    "id": 10,
     "title": "Knicks",
     "description": "New York Knicks fan site",
     "image": "websites/knicks.png",
     "url": "https://wyatt987.github.io/May---monthly/"
   },
   {
-    "id": 7,
+    "id": 11,
     "title": "Hangman",
     "description": "Classic word guessing game",
     "image": "websites/hangman.png",
     "url": "https://wyatt987.github.io/March-Hangman/"
   },
   {
-    "id": 8,
+    "id": 12,
     "title": "Magic 8-ball",
     "description": "Fortune telling game",
     "image": "websites/magic-8-ball.png",
     "url": "https://wyatt987.github.io/Magic-8-Ball-Project/"
   },
   {
-    "id": 9,
+    "id": 13,
     "title": "Look-Ma_I'm_famous- FBLA",
     "description": "FBLA project showcase",
     "image": "websites/Look-Ma-I'm-Famous.png",
     "url": "https://wyatt987.github.io/Look-Ma-I-m-Famous/"
   },
   {
-    "id": 10,
+    "id": 14,
     "title": "Split Calculator",
     "description": "Bill splitting calculator",
     "image": "websites/split-calculator.png",
     "url": "https://wyatt987.github.io/April---Split/"
   },
   {
-    "id": 11,
+    "id": 15,
     "title": "Schedule",
     "description": "Scheduling application",
     "image": "websites/schedule.png",
     "url": "https://wyatt987.github.io/To-Do-List/"
-  },
-  {
-    "id": 12,
+  }
+
+  ],
+  "senior": [
+      {
+    "id": 16,
     "title": "Bobsdoll-trvel",
     "description": "Travel planning site",
     "image": "websites/bobs-Doll-travel.png",
     "url": "https://wyatt987.github.io/bobsdoll-travel/"
   },
   {
-    "id": 14,
-    "title": "Criminology",
-    "description": "Criminology study resources",
-    "image": "websites/criminology.png",
-    "url": "https://wyatt987.github.io/Criminology/"
-  },
-  
-  {
-    "id": 15,
+    "id": 17,
     "title": "Track Site",
     "description": "Track and field information",
     "image": "websites/track site.png",
     "url": "https://github.com/Wyatt987/April---Split"
-  },
-  {
-    "id": 16,
-    "title": "Italy",
-    "description": "Information on Italy",
-    "image": "websites/Italy.png",
-    "url": "https://replit.com/@WyattBedor/Italy"
-  },
-  {
-    "id": 17,
-    "title": "Our Solar",
-    "description": "Website for Our Solar",
-    "image": "websites/Our-Solar.png",
-    "url": "https://wyatt987.github.io/Our-Solar/"
-  },
+  }
+  ],
+  "future": [
   {
     "id": 18,
-    "title": "Marlboro Farmer's Market",
-    "description": "Website for Marlboro Farmer's Market",
-    "image": "websites/Marlboro-Farmer's-Market.png",
-    "url": "https://wyatt987.github.io/Marlboro-Farmer's-Market/"
-  },
-  {
-    "id": 19,
-    "title": "Courtside Coffee",
-    "description": "Website for Courtside Coffee",
-    "image": "websites/Courtside-coffee.png",
-    "url": "https://wyatt987.github.io/Courtside-coffee/"
+    "title": "Criminology",
+    "description": "Criminology study resources",
+    "image": "websites/criminology.png",
+    "url": "https://wyatt987.github.io/Criminology/"
   }
-]
+  ]
+}

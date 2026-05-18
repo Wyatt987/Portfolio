@@ -7,25 +7,159 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── Neon glow on headings ───────────────────────────── */
+.hero-headline .accent {
+  text-shadow: 0 0 20px #FF2D78, 0 0 60px #FF2D78, 0 0 100px rgba(255,45,120,0.4);
+}
+
+.sec-title {
+  text-shadow: 0 0 30px rgba(255,45,120,0.5);
+}
+
+/* ── Scanlines overlay ───────────────────────────────── */
+#scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 9995;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+}
+
+/* ── Floating kanji ──────────────────────────────────── */
+.kanji-float {
+  position: fixed;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  color: rgba(255,45,120,0.06);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  animation: kanjiDrift linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes kanjiDrift {
+  0%   { transform: translateY(100vh) rotate(-8deg); opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 0.6; }
+  100% { transform: translateY(-20vh) rotate(8deg); opacity: 0; }
+}
+
+/* ── Neon sign flicker on eyebrow badge ─────────────── */
+@keyframes neonFlicker {
+  0%,19%,21%,23%,25%,54%,56%,100% { 
+    text-shadow: 0 0 8px #FF2D78, 0 0 20px #FF2D78;
+    opacity: 1;
+  }
+  20%,24%,55% { 
+    text-shadow: none;
+    opacity: 0.6;
+  }
+}
+
+.hero-eyebrow {
+  animation: neonFlicker 8s infinite;
+  border-color: rgba(255,45,120,0.4);
+  box-shadow: 0 0 12px rgba(255,45,120,0.15), inset 0 0 12px rgba(255,45,120,0.05);
+}
+
+/* ── Neon skill pills — alternate cyan ───────────────── */
+.skill-pill:nth-child(even) {
+  color: var(--sage);
+  border-color: rgba(0,245,255,0.2);
+  background: rgba(0,245,255,0.05);
+}
+.skill-pill:nth-child(even):hover {
+  border-color: var(--sage);
+  box-shadow: 0 6px 20px rgba(0,245,255,0.2);
+}
+
+/* ── Neon decorative signs ───────────────────────────── */
+.neon-sign {
+  position: fixed;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(255,45,120,0.12);
+  border: 1px solid rgba(255,45,120,0.08);
+  padding: 8px 12px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 1;
+  text-shadow: 0 0 10px rgba(255,45,120,0.3);
+  box-shadow: 0 0 20px rgba(255,45,120,0.05), inset 0 0 20px rgba(255,45,120,0.03);
+  animation: signFlicker 6s ease-in-out infinite;
+  writing-mode: vertical-rl;
+}
+
+@keyframes signFlicker {
+  0%,100% { opacity: 0.8; }
+  50%      { opacity: 0.4; }
+  75%      { opacity: 0.9; }
+  80%      { opacity: 0.3; }
+  85%      { opacity: 0.8; }
+}
+
+/* ── Japanese subtitle under role ────────────────────── */
+.s-role-jp {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--sage);
+  letter-spacing: 0.15em;
+  margin-bottom: 14px;
+  opacity: 0.7;
+  text-shadow: 0 0 8px rgba(0,245,255,0.4);
+}
+
+/* ── Tokyo clock style ────────────────────────────────── */
+#tokyo-time {
+  color: var(--sage);
+  text-shadow: 0 0 8px rgba(0,245,255,0.5);
+}
+
+/* ── Wet pavement reflection ─────────────────────────── */
+#reflection-canvas {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.25;
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+}
+
 :root {
-  --purple:      #392F5A;
-  --pink:        #F092DD;
-  --pink-soft:   #FFAFF0;
-  --rose:        #EEC8E0;
-  --sage:        #A8C7BB;
-  --purple-mid:  #4d4070;
-  --purple-light:#5a4d82;
-  --card-bg:     #2e2549;
-  --card-bg2:    #251e3e;
-  --text-primary:#FFAFF0;
-  --text-body:   #EEC8E0;
-  --text-muted:  #A8C7BB;
-  --border:      rgba(240,146,221,0.15);
-  --border-mid:  rgba(240,146,221,0.25);
-  --glow:        rgba(240,146,221,0.12);
+  
+--purple:      #0D0A1A;
+--pink:        #FF2D78;
+--pink-soft:   #FF6B9D;
+--rose:        #FFB3CC;
+--sage:        #00F5FF;
+--purple-mid:  #1a1030;
+--purple-light:#2d1f4e;
+--card-bg:     #110D24;
+--card-bg2:    #0a0814;
+--text-primary:#FF6B9D;
+--text-body:   #E8C4D4;
+--text-muted:  #00F5FF;
+--border:      rgba(255,45,120,0.15);
+--border-mid:  rgba(255,45,120,0.3);
+--glow:        rgba(255,45,120,0.15);
   --font-display:'DM Serif Display', Georgia, serif;
   --font-body:   'Instrument Sans', sans-serif;
   --font-mono:   'DM Mono', monospace;
@@ -36,7 +170,66 @@
 }
 
 html { scroll-behavior: smooth; }
+.rain-control {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
+.rain-control-label {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--purple-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rain-control-label span {
+  color: var(--pink);
+  font-size: 10px;
+}
+
+.rain-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: rgba(240,146,221,0.15);
+  border-radius: 99px;
+  outline: none;
+  cursor: none;
+}
+
+.rain-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--pink);
+  box-shadow: 0 0 8px rgba(240,146,221,0.6);
+  cursor: none;
+  transition: transform 0.2s var(--ease-spring), box-shadow 0.2s;
+}
+
+.rain-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.4);
+  box-shadow: 0 0 16px rgba(240,146,221,0.9);
+}
+
+.rain-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--pink);
+  border: none;
+  box-shadow: 0 0 8px rgba(240,146,221,0.6);
+  cursor: none;
+}
 body {
   background: var(--purple);
   color: var(--text-body);
@@ -47,6 +240,7 @@ body {
   overflow-x: hidden;
   cursor: none;
 }
+
 
 /* ── Custom Cursor ─────────────────────────────────────── */
 #cursor-dot {
@@ -132,11 +326,13 @@ body.cursor-click #cursor-dot {
 body::before {
   content: '';
   position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9997;
-  opacity: 0.45;
+  inset: -10px;
+  background-image: url('https://images.unsplash.com/photo-1617869884925-f8f0a51b2374?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px) brightness(0.3) saturate(1.4);
+  z-index: 0;
+  transform: scale(1.05);
 }
 body::after {
   content: '';
@@ -1101,13 +1297,20 @@ section.visible { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
-
 <!-- Canvas for WebGL particle bg -->
 <canvas id="bg-canvas"></canvas>
 <!-- Rain canvas -->
 <canvas id="rain-canvas"></canvas>
 <!-- Glass drip overlay -->
 <div id="glass-overlay"></div>
+<!-- Scanlines -->
+<div id="scanlines"></div>
+
+<!-- Neon signs -->
+<div class="neon-sign" style="right:18px;top:15%;">東京の雨</div>
+<div class="neon-sign" style="right:48px;top:35%;animation-delay:2s;">開発者</div>
+<div class="neon-sign" style="right:18px;top:58%;animation-delay:4s;">夜の街</div>
+
 <div id="frost-layer"></div>
 <!-- Custom cursor -->
 <div id="cursor-dot"></div>
@@ -1145,6 +1348,7 @@ section.visible { opacity: 1; transform: none; }
   <aside class="sidebar">
     <div class="s-name" id="sName">Wyatt<br>Bedor</div>
     <div class="s-role">Full-Stack Developer</div>
+    <div class="s-role-jp">フルスタック開発者</div>
     <p class="s-tagline">I build fast, accessible digital products with thoughtful UX.</p>
 
     <div class="nav-label">Sections</div>
@@ -1176,12 +1380,18 @@ section.visible { opacity: 1; transform: none; }
       </a>
     </nav>
 
-    <!-- Live clock -->
-    <div style="margin-top:28px;font-size:10px;font-family:var(--font-mono);color:var(--text-muted);letter-spacing:0.08em;">
-      <span id="live-time" style="color:var(--pink)"></span>&nbsp;NYC
-    </div>
+    <div style="margin-top:28px;font-size:10px;font-family:var(--font-mono);color:var(--text-muted);letter-spacing:0.08em;display:flex;flex-direction:column;gap:4px;">
+  <div><span id="live-time" style="color:var(--pink)"></span>&nbsp;NYC</div>
+  <div><span id="tokyo-time"></span>&nbsp;東京</div>
+</div>
 
     <div class="s-socials">
+      <div class="rain-control">
+  <div class="rain-control-label">
+    Rain intensity <span id="rainLabel">Medium</span>
+  </div>
+  <input class="rain-slider" id="rainSlider" type="range" min="0" max="3" step="1" value="1">
+</div>
       <a class="social-icon magnetic" href="#" title="GitHub">
         <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
       </a>
@@ -2003,6 +2213,7 @@ sections.forEach(s => childObs.observe(s));
   const canvas = document.getElementById('rain-canvas');
   const ctx = canvas.getContext('2d');
   const overlay = document.getElementById('glass-overlay');
+  
 
   function resize() {
     canvas.width  = window.innerWidth;
@@ -2012,60 +2223,61 @@ sections.forEach(s => childObs.observe(s));
   window.addEventListener('resize', resize);
 
   // Rain drop config
-  const DROPS = 180;
-  const drops = Array.from({ length: DROPS }, () => ({
-    x:       Math.random() * window.innerWidth,
-    y:       Math.random() * window.innerHeight,
-    len:     Math.random() * 55 + 15,
-    speed:   Math.random() * 6 + 8,
-    opacity: Math.random() * 0.25 + 0.07,
-    width:   Math.random() * 0.8 + 0.3,
-  }));
+  const DROPS = 520; // max possible
+const drops = Array.from({ length: DROPS }, () => ({
+  x:       Math.random() * window.innerWidth,
+  y:       Math.random() * window.innerHeight,
+  len:     Math.random() * 55 + 15,
+  speed:   Math.random() * 6 + 8,
+  opacity: Math.random() * 0.25 + 0.07,
+  width:   Math.random() * 0.8 + 0.3,
+}));
 
-  function drawRain() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+function drawRain() {
+  const cfg = window.rainConfig || { count: 180, speed: 1, opacity: 0.55 };
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Subtle deep background wash so rain has something to catch on
-    ctx.fillStyle = 'rgba(30, 18, 52, 0.18)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'rgba(30, 18, 52, 0.18)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    drops.forEach(d => {
-      // Main streak
-      const grad = ctx.createLinearGradient(d.x, d.y, d.x + 1.5, d.y + d.len);
-      grad.addColorStop(0,   `rgba(255,255,255,0)`);
-      grad.addColorStop(0.3, `rgba(200,170,230,${d.opacity})`);
-      grad.addColorStop(0.7, `rgba(240,146,221,${d.opacity * 0.7})`);
-      grad.addColorStop(1,   `rgba(255,255,255,0)`);
+  // Only draw up to cfg.count drops
+  for (let i = 0; i < cfg.count; i++) {
+    const d = drops[i];
+    const alpha = d.opacity * cfg.opacity;
 
-      ctx.beginPath();
-      ctx.moveTo(d.x, d.y);
-      ctx.lineTo(d.x + 1.5, d.y + d.len);
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = d.width;
-      ctx.stroke();
+    const grad = ctx.createLinearGradient(d.x, d.y, d.x + 1.5, d.y + d.len);
+    grad.addColorStop(0,   `rgba(255,255,255,0)`);
+    grad.addColorStop(0.3, `rgba(200,170,230,${alpha})`);
+    grad.addColorStop(0.7, `rgba(240,146,221,${alpha * 0.7})`);
+    grad.addColorStop(1,   `rgba(255,255,255,0)`);
 
-      // Tiny splash dot at tip
-      ctx.beginPath();
-      ctx.arc(d.x + 1, d.y + d.len, d.width * 1.4, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(240,146,221,${d.opacity * 0.5})`;
-      ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(d.x, d.y);
+    ctx.lineTo(d.x + 1.5, d.y + d.len);
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = d.width;
+    ctx.stroke();
 
-      // Move drop
-      d.y += d.speed;
-      d.x += 0.4; // slight diagonal
+    ctx.beginPath();
+    ctx.arc(d.x + 1, d.y + d.len, d.width * 1.4, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(240,146,221,${alpha * 0.5})`;
+    ctx.fill();
 
-      if (d.y - d.len > canvas.height || d.x > canvas.width) {
-        d.x     = Math.random() * canvas.width;
-        d.y     = -d.len;
-        d.speed = Math.random() * 6 + 8;
-        d.len   = Math.random() * 55 + 15;
-        d.opacity = Math.random() * 0.25 + 0.07;
-      }
-    });
+    d.y += d.speed * cfg.speed;
+    d.x += 0.4 * cfg.speed;
 
-    requestAnimationFrame(drawRain);
+    if (d.y - d.len > canvas.height || d.x > canvas.width) {
+      d.x     = Math.random() * canvas.width;
+      d.y     = -d.len;
+      d.speed = Math.random() * 6 + 8;
+      d.len   = Math.random() * 55 + 15;
+      d.opacity = Math.random() * 0.25 + 0.07;
+    }
   }
-  drawRain();
+
+  requestAnimationFrame(drawRain);
+}
+drawRain();
 
   // ── Glass drip streaks on DOM overlay ──────────────────
   function spawnStreak() {
@@ -2132,6 +2344,148 @@ sections.forEach(s => childObs.observe(s));
   for (let i = 0; i < 22; i++) {
     setTimeout(spawnStreak, i * 280);
   }
+})();
+/* ================================================================
+   RAIN INTENSITY SLIDER
+   ================================================================ */
+(function initRainSlider() {
+  const slider = document.getElementById('rainSlider');
+  const label  = document.getElementById('rainLabel');
+  if (!slider) return;
+
+  const levels = [
+    { label: 'None',   count: 0,   speed: 0,  opacity: 0    },
+    { label: 'Light',  count: 60,  speed: 0.5, opacity: 0.12 },
+    { label: 'Medium', count: 180, speed: 1,   opacity: 0.55 },
+    { label: 'Heavy',  count: 320, speed: 1.6, opacity: 0.75 },
+    { label: 'Storm',  count: 520, speed: 2.4, opacity: 0.95 },
+  ];
+
+  // Expose a global config object that the rain loop reads from
+  window.rainConfig = { ...levels[2] };
+
+  slider.max = levels.length - 1;
+  slider.value = 2; // start at Medium
+
+  slider.addEventListener('input', () => {
+    const lvl = levels[parseInt(slider.value)];
+    label.textContent = lvl.label;
+    window.rainConfig = { ...lvl };
+
+    // If none, hide canvas; otherwise show it
+    const rainCanvas = document.getElementById('rain-canvas');
+    if (rainCanvas) {
+      rainCanvas.style.opacity = lvl.count === 0 ? '0' : '1';
+      rainCanvas.style.transition = 'opacity 0.6s ease';
+    }
+  });
+})();
+/* ================================================================
+   TOKYO THEME — KANJI FLOATS + REFLECTION + TOKYO CLOCK
+   ================================================================ */
+
+// Tokyo clock
+function updateTokyoClock() {
+  const el = document.getElementById('tokyo-time');
+  if (!el) return;
+  el.textContent = new Date().toLocaleTimeString('en-US', {
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+    timeZone: 'Asia/Tokyo', hour12: false
+  });
+}
+updateTokyoClock();
+setInterval(updateTokyoClock, 1000);
+
+// Floating kanji
+(function spawnKanji() {
+  const chars = [
+    '東京','雨','夜','開発者','電気','光','影','街','霧',
+    '嵐','桜','侍','忍','夢','空','星','月','風','火','水',
+    'コード','技術','未来','現実','デジタル','ネオン'
+  ];
+  const sizes = [24, 32, 48, 64, 80, 96, 128];
+
+  function spawn() {
+    const el = document.createElement('div');
+    el.className = 'kanji-float';
+    el.textContent = chars[Math.floor(Math.random() * chars.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = sizes[Math.floor(Math.random() * sizes.length)] + 'px';
+    const dur = Math.random() * 20 + 15;
+    el.style.animationDuration = dur + 's';
+    el.style.animationDelay = Math.random() * 5 + 's';
+    el.style.opacity = Math.random() * 0.06 + 0.02;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), (dur + 5) * 1000);
+  }
+
+  // Seed initial batch
+  for (let i = 0; i < 12; i++) setTimeout(spawn, i * 800);
+  // Keep spawning
+  setInterval(spawn, 3000);
+})();
+
+// Wet pavement neon reflection at bottom of screen
+(function initReflection() {
+  const canvas = document.createElement('canvas');
+  canvas.id = 'reflection-canvas';
+  canvas.style.cssText = `
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    width: 100%; height: 120px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.3;
+  `;
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = 120;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let t = 0;
+  function draw() {
+    t += 0.012;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Rippled neon streaks — simulates puddle reflections
+    const colors = ['#FF2D78', '#00F5FF', '#FF6B9D', '#FF2D78'];
+    colors.forEach((col, i) => {
+      const x = (canvas.width * (i + 1)) / (colors.length + 1);
+      const wobble = Math.sin(t + i * 1.4) * 6;
+      const grad = ctx.createLinearGradient(x + wobble, 0, x + wobble, 120);
+      grad.addColorStop(0,   col.replace(')', ',0.6)').replace('rgb', 'rgba').replace('#FF2D78','rgba(255,45,120,0.6)').replace('#00F5FF','rgba(0,245,255,0.5)').replace('#FF6B9D','rgba(255,107,157,0.4)'));
+      grad.addColorStop(0,   i % 2 === 0 ? 'rgba(255,45,120,0.5)' : 'rgba(0,245,255,0.4)');
+      grad.addColorStop(0.4, i % 2 === 0 ? 'rgba(255,45,120,0.2)' : 'rgba(0,245,255,0.15)');
+      grad.addColorStop(1,   'transparent');
+
+      ctx.beginPath();
+      ctx.moveTo(x + wobble, 0);
+      // Wavy line downward
+      for (let y = 0; y < 120; y += 4) {
+        const wx = x + wobble + Math.sin(t * 2 + y * 0.08 + i) * (y * 0.06);
+        ctx.lineTo(wx, y);
+      }
+      ctx.strokeStyle = i % 2 === 0 ? `rgba(255,45,120,${0.3 + Math.sin(t + i) * 0.1})` : `rgba(0,245,255,${0.25 + Math.sin(t + i) * 0.08})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    });
+
+    // Subtle puddle base
+    const puddle = ctx.createLinearGradient(0, 0, 0, 120);
+    puddle.addColorStop(0,   'rgba(255,45,120,0.04)');
+    puddle.addColorStop(0.5, 'rgba(0,245,255,0.03)');
+    puddle.addColorStop(1,   'transparent');
+    ctx.fillStyle = puddle;
+    ctx.fillRect(0, 0, canvas.width, 120);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
 })();
 </script>
 </body>
