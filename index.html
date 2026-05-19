@@ -9,8 +9,79 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
 <style>
+  
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── Loading Screen ──────────────────────────────────── */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: #0D0A1A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
 
+#loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#blossom-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.loader-tree {
+  position: relative;
+  z-index: 1;
+}
+
+.loader-text {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: rgba(255,45,120,0.7);
+  text-transform: uppercase;
+  z-index: 1;
+  animation: loaderPulse 1.5s ease-in-out infinite;
+}
+
+.loader-sub {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(0,245,255,0.5);
+  z-index: 1;
+  margin-top: -16px;
+}
+
+.loader-bar-wrap {
+  width: 180px;
+  height: 1px;
+  background: rgba(255,45,120,0.15);
+  border-radius: 99px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.loader-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #FF2D78, #00F5FF);
+  border-radius: 99px;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px rgba(255,45,120,0.6);
+}
+
+@keyframes loaderPulse {
+  0%,100% { opacity: 0.7; }
+  50%      { opacity: 1; text-shadow: 0 0 20px rgba(255,45,120,0.6); }
+}
 /* ── Neon glow on headings ───────────────────────────── */
 .hero-headline .accent {
   text-shadow: 0 0 20px #FF2D78, 0 0 60px #FF2D78, 0 0 100px rgba(255,45,120,0.4);
@@ -1448,6 +1519,81 @@ section.visible { opacity: 1; transform: none; }
 
 <div class="layout">
 
+  <!-- Loading Screen -->
+<div id="loader">
+  <canvas id="blossom-canvas"></canvas>
+  <div class="loader-tree">
+    <svg width="220" height="260" viewBox="0 0 220 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Trunk -->
+      <path d="M110 260 C108 220 104 200 100 180 C96 160 92 140 95 120" stroke="#4a2f2f" stroke-width="8" stroke-linecap="round"/>
+      <path d="M110 260 C112 220 116 200 120 180 C124 160 128 140 125 120" stroke="#3d2525" stroke-width="6" stroke-linecap="round"/>
+      <!-- Main branches -->
+      <path d="M100 180 C85 165 60 155 40 140" stroke="#4a2f2f" stroke-width="5" stroke-linecap="round"/>
+      <path d="M105 160 C90 140 75 120 55 105" stroke="#4a2f2f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M110 140 C115 115 118 90 115 65" stroke="#4a2f2f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M115 155 C135 135 155 120 175 108" stroke="#4a2f2f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M120 170 C140 158 162 152 182 148" stroke="#4a2f2f" stroke-width="3" stroke-linecap="round"/>
+      <path d="M95 145 C75 125 58 100 45 78" stroke="#4a2f2f" stroke-width="3" stroke-linecap="round"/>
+      <!-- Sub branches -->
+      <path d="M55 105 C42 92 28 82 15 70" stroke="#5c3a3a" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M55 105 C50 88 48 72 50 55" stroke="#5c3a3a" stroke-width="2" stroke-linecap="round"/>
+      <path d="M115 65 C105 45 98 28 95 10" stroke="#5c3a3a" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M115 65 C128 48 138 32 145 15" stroke="#5c3a3a" stroke-width="2" stroke-linecap="round"/>
+      <path d="M175 108 C185 90 192 72 195 52" stroke="#5c3a3a" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M175 108 C188 100 200 95 212 88" stroke="#5c3a3a" stroke-width="2" stroke-linecap="round"/>
+      <path d="M40 140 C25 130 12 118 5 105" stroke="#5c3a3a" stroke-width="2" stroke-linecap="round"/>
+      <path d="M45 78 C35 62 28 45 25 28" stroke="#5c3a3a" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- Blossom clusters — pink circles layered for depth -->
+      <!-- Top cluster -->
+      <circle cx="110" cy="52" r="28" fill="rgba(255,45,120,0.15)"/>
+      <circle cx="108" cy="50" r="20" fill="rgba(255,107,157,0.2)"/>
+      <circle cx="112" cy="48" r="14" fill="rgba(255,45,120,0.25)"/>
+
+      <!-- Top left -->
+      <circle cx="50" cy="48" r="24" fill="rgba(255,45,120,0.15)"/>
+      <circle cx="48" cy="46" r="17" fill="rgba(255,107,157,0.2)"/>
+      <circle cx="52" cy="44" r="11" fill="rgba(255,45,120,0.25)"/>
+
+      <!-- Top right -->
+      <circle cx="148" cy="12" r="22" fill="rgba(255,45,120,0.15)"/>
+      <circle cx="146" cy="10" r="15" fill="rgba(255,107,157,0.22)"/>
+      <circle cx="150" cy="8"  r="10" fill="rgba(255,45,120,0.28)"/>
+
+      <!-- Right cluster -->
+      <circle cx="196" cy="48" r="26" fill="rgba(255,45,120,0.13)"/>
+      <circle cx="194" cy="46" r="18" fill="rgba(255,107,157,0.2)"/>
+      <circle cx="198" cy="44" r="12" fill="rgba(255,45,120,0.25)"/>
+
+      <!-- Left mid -->
+      <circle cx="18"  cy="68" r="22" fill="rgba(255,45,120,0.13)"/>
+      <circle cx="16"  cy="66" r="15" fill="rgba(255,107,157,0.18)"/>
+      <circle cx="20"  cy="64" r="10" fill="rgba(255,45,120,0.22)"/>
+
+      <!-- Right mid -->
+      <circle cx="208" cy="86" r="18" fill="rgba(255,45,120,0.12)"/>
+      <circle cx="206" cy="84" r="12" fill="rgba(255,107,157,0.18)"/>
+
+      <!-- Left low -->
+      <circle cx="28"  cy="25" r="18" fill="rgba(255,45,120,0.12)"/>
+      <circle cx="26"  cy="23" r="12" fill="rgba(255,107,157,0.18)"/>
+
+      <!-- Center mid -->
+      <circle cx="95"  cy="10" r="18" fill="rgba(255,45,120,0.13)"/>
+      <circle cx="93"  cy="8"  r="12" fill="rgba(255,107,157,0.2)"/>
+
+      <!-- Glow halos -->
+      <circle cx="110" cy="52" r="34" fill="rgba(255,45,120,0.05)"/>
+      <circle cx="50"  cy="48" r="30" fill="rgba(255,45,120,0.05)"/>
+      <circle cx="196" cy="48" r="32" fill="rgba(255,45,120,0.04)"/>
+    </svg>
+  </div>
+  <div class="loader-text">Wyatt Bedor</div>
+  <div class="loader-sub">東京の雨 · Loading</div>
+  <div class="loader-bar-wrap">
+    <div class="loader-bar" id="loaderBar"></div>
+  </div>
+</div>
   <!-- Sidebar -->
   <aside class="sidebar">
     <div class="s-name" id="sName">Wyatt<br>Bedor</div>
@@ -2659,6 +2805,102 @@ setInterval(updateTokyoClock, 1000);
     requestAnimationFrame(draw);
   }
   draw();
+})();
+/* ================================================================
+   LOADING SCREEN
+   ================================================================ */
+(function initLoader() {
+  const loader    = document.getElementById('loader');
+  const bar       = document.getElementById('loaderBar');
+  const canvas    = document.getElementById('blossom-canvas');
+  if (!loader) return;
+
+  const ctx = canvas.getContext('2d');
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Falling petals on the loader screen
+  const petals = Array.from({ length: 55 }, () => ({
+    x:       Math.random() * canvas.width,
+    y:       Math.random() * canvas.height,
+    size:    Math.random() * 6 + 3,
+    speedY:  Math.random() * 1.5 + 0.5,
+    speedX:  Math.random() * 0.8 - 0.4,
+    spin:    Math.random() * Math.PI * 2,
+    spinSpd: (Math.random() - 0.5) * 0.06,
+    opacity: Math.random() * 0.6 + 0.2,
+    pink:    Math.random() > 0.3,
+  }));
+
+  function drawPetal(x, y, size, spin, opacity, pink) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(spin);
+    ctx.globalAlpha = opacity;
+
+    // 5-petal flower shape
+    for (let i = 0; i < 5; i++) {
+      ctx.save();
+      ctx.rotate((i * Math.PI * 2) / 5);
+      ctx.beginPath();
+      ctx.ellipse(0, -size * 0.7, size * 0.35, size * 0.7, 0, 0, Math.PI * 2);
+      ctx.fillStyle = pink
+        ? `rgba(255, ${80 + Math.random()*60}, ${120 + Math.random()*40}, 1)`
+        : `rgba(255, 200, 220, 1)`;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // Center dot
+    ctx.beginPath();
+    ctx.arc(0, 0, size * 0.2, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,255,200,0.8)';
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  let loaderRaf;
+  function animatePetals() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    petals.forEach(p => {
+      drawPetal(p.x, p.y, p.size, p.spin, p.opacity, p.pink);
+      p.y    += p.speedY;
+      p.x    += p.speedX + Math.sin(p.y * 0.02) * 0.4;
+      p.spin += p.spinSpd;
+      if (p.y > canvas.height + 20) {
+        p.y = -20;
+        p.x = Math.random() * canvas.width;
+      }
+    });
+
+    loaderRaf = requestAnimationFrame(animatePetals);
+  }
+  animatePetals();
+
+  // Progress bar
+  let progress = 0;
+  const barInterval = setInterval(() => {
+    // Fast at first, slows near the end
+    const step = progress < 70 ? 3 : progress < 90 ? 1 : 0.4;
+    progress = Math.min(progress + step, 99);
+    if (bar) bar.style.width = progress + '%';
+  }, 40);
+
+  // Hide loader when page is ready
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      if (bar) bar.style.width = '100%';
+      clearInterval(barInterval);
+
+      setTimeout(() => {
+        cancelAnimationFrame(loaderRaf);
+        loader.classList.add('fade-out');
+        setTimeout(() => loader.remove(), 900);
+      }, 400);
+    }, 800); // minimum display time
+  });
 })();
 </script>
 </body>
