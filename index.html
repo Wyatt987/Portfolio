@@ -1121,6 +1121,7 @@ section.visible { opacity: 1; transform: none; }
   background: rgba(240,146,221,0.07);
   box-shadow: 0 0 0 3px rgba(240,146,221,0.1);
 }
+
 .form-textarea { height: 100px; }
 .form-submit {
   display: inline-flex;
@@ -1294,6 +1295,109 @@ section.visible { opacity: 1; transform: none; }
   transform-origin: bottom;
   pointer-events: none;
 }
+/* ── Year tabs ───────────────────────────────────────── */
+.year-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+  flex-wrap: wrap;
+}
+
+.year-tab {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 20px;
+  cursor: none;
+  transition: all 0.25s var(--ease-smooth);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  margin-bottom: -1px;
+}
+
+.year-tab:hover {
+  color: var(--text-primary);
+}
+
+.year-tab.active {
+  color: var(--pink);
+  border-bottom-color: var(--pink);
+  text-shadow: 0 0 12px rgba(255,45,120,0.4);
+}
+
+.year-tab-num {
+  font-size: 9px;
+  color: var(--pink);
+  opacity: 0.6;
+}
+
+.year-tab.active .year-tab-num {
+  opacity: 1;
+}
+
+.year-desc {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+  min-height: 18px;
+}
+
+/* ── Tab transition ──────────────────────────────────── */
+.tab-fade-enter-active,
+.tab-fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s var(--ease-expo);
+}
+
+.tab-fade-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.tab-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* ── Future placeholder ──────────────────────────────── */
+.future-placeholder {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 220px;
+  gap: 16px;
+  border: 1px dashed var(--border-mid);
+  border-radius: 18px;
+  opacity: 0.5;
+}
+
+.future-icon {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 48px;
+  color: var(--pink);
+  filter: drop-shadow(0 0 12px rgba(255,45,120,0.5));
+  animation: hintFloat 3s ease-in-out infinite;
+}
+
+.future-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 </style>
 </head>
 <body>
@@ -1417,10 +1521,55 @@ section.visible { opacity: 1; transform: none; }
         <span class="line"><span class="line-inner">for the <span id="rotating-word" style="color:var(--pink);font-style:italic;">web.</span></span></span>
       </h1>
       <p class="hero-sub">A full-stack developer based in New York focused on building beautiful, performant experiences that live at the intersection of design and engineering.</p>
-      <a href="#work" class="hero-cta magnetic">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l-6-6h12l-6 6z"/></svg>
-        See my work
-      </a>
+      <section id="work">
+  <div id="app" v-cloak>
+    <div class="sec-num">03 — work</div>
+    <h2 class="sec-title scramble" data-text="Websites">Websites</h2>
+
+    <!-- Tab buttons -->
+    <div class="year-tabs">
+      <button 
+        v-for="tab in tabs" 
+        :key="tab.key"
+        class="year-tab"
+        :class="{ active: activeTab === tab.key }"
+        @click="activeTab = tab.key">
+        <span class="year-tab-num">{{ tab.num }}</span>
+        {{ tab.label }}
+      </button>
+    </div>
+
+    <!-- Tab content -->
+    <transition name="tab-fade" mode="out-in">
+      <div :key="activeTab">
+        <p class="year-desc">{{ currentTab.desc }}</p>
+        <div class="websites-scroll" id="websitesGallery">
+          <div class="websites-gallery">
+            <a 
+              v-for="site in currentSites" 
+              :key="site.id" 
+              :href="site.url" 
+              class="website-item tilt-card" 
+              target="_blank" 
+              :aria-label="site.title">
+              <img :src="site.image" :alt="site.title">
+              <div class="website-overlay">
+                <div class="website-title">{{ site.title }}</div>
+                <div class="website-desc">{{ site.description }}</div>
+              </div>
+            </a>
+
+            <!-- Empty state for future -->
+            <div v-if="!currentSites.length" class="future-placeholder">
+              <div class="future-icon">雨</div>
+              <div class="future-label">Projects incoming...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </div>
+</section>
 
       <div class="stats-strip">
         <div class="stat-item">
@@ -2158,7 +2307,31 @@ function closeMobile() { mobileMenu && mobileMenu.classList.remove('open'); }
    18. VUE WEBSITES
    ================================================================ */
 const vueApp = Vue.createApp({
-  data() { return { websites: [] }; },
+  data() {
+    return {
+      activeTab: 'sophomore',
+      websites: {
+        sophomore: [],
+        junior: [],
+        senior: [],
+        future: []
+      },
+      tabs: [
+        { key: 'sophomore', label: 'Sophomore', num: '01', desc: 'Early projects — learning the foundations.' },
+        { key: 'junior',    label: 'Junior',    num: '02', desc: 'Finding my style and pushing further.' },
+        { key: 'senior',    label: 'Senior',    num: '03', desc: 'Polished work, real clients, real problems.' },
+        { key: 'future',    label: 'Future',    num: '04', desc: 'What\'s next — coming soon.' },
+      ]
+    };
+  },
+  computed: {
+    currentSites() {
+      return this.websites[this.activeTab] || [];
+    },
+    currentTab() {
+      return this.tabs.find(t => t.key === this.activeTab) || {};
+    }
+  },
   mounted() {
     fetch('websites.json')
       .then(r => r.ok ? r.json() : Promise.reject())
