@@ -11,6 +11,7 @@
 <style>
   
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 /* ── Loading Screen ──────────────────────────────────── */
 #loader {
   position: fixed;
@@ -742,6 +743,136 @@ section.visible { opacity: 1; transform: none; }
   opacity: 0;
   animation: fadeUp 0.8s var(--ease-expo) 0.7s forwards;
 }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  gap: 42px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.hero-aside {
+  display: flex;
+  justify-content: flex-end;
+}
+.hero-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 18px 50px rgba(0,0,0,0.17);
+  overflow: hidden;
+  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s, border-color 0.3s;
+}
+.hero-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(240,146,221,0.5);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1), 0 28px 70px rgba(0,0,0,0.22);
+}
+.hero-card:hover::before {
+  background: radial-gradient(circle, rgba(240,146,221,0.35), transparent 55%);
+}
+.hero-card:hover .hero-card-preview {
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), 0 0 40px rgba(240,146,221,0.15);
+}
+.hero-card:hover .preview-dot {
+  transform: scale(1.15);
+  box-shadow: 0 0 18px rgba(255,45,120,0.6);
+}
+.hero-card:hover .preview-line {
+  background: rgba(255,255,255,0.18);
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: -26px;
+  right: -26px;
+  width: 96px;
+  height: 96px;
+  background: radial-gradient(circle, rgba(240,146,221,0.25), transparent 55%);
+  border-radius: 50%;
+}
+.hero-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(240,146,221,0.12);
+  color: var(--pink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  z-index: 1;
+}
+.hero-card-preview {
+  position: relative;
+  width: 100%;
+  min-height: 180px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(70,33,117,0.9), rgba(40,22,70,0.95));
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+  z-index: 1;
+}
+.hero-card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 22px;
+}
+.preview-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pink);
+  box-shadow: 0 0 12px rgba(255,45,120,0.4);
+  margin-bottom: 14px;
+}
+.preview-line {
+  display: block;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  margin-bottom: 12px;
+}
+.preview-line-lg { width: 100%; }
+.preview-line-sm { width: 65%; }
+.hero-card-title {
+  margin: 0 0 10px;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--text-primary);
+  z-index: 1;
+}
+.hero-card-copy {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.75;
+  font-size: 13px;
+  z-index: 1;
+}
+.hero-card-footer {
+  margin-top: 22px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pink);
+  z-index: 1;
+}
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -879,31 +1010,202 @@ section.visible { opacity: 1; transform: none; }
 .about-photo:hover .about-initials { opacity: 0.1; }
 
 /* ── Marquee ────────────────────────────────────────────── */
+/* ── Bullet Train Marquee ────────────────────────────── */
 .marquee-wrapper {
   overflow: hidden;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 12px 0;
+  padding: 0;
   margin: 40px 0;
   position: relative;
 }
+
+/* Train track rails */
+.train-track {
+  position: relative;
+  padding: 18px 0;
+  border-top: 2px solid rgba(255,45,120,0.15);
+  border-bottom: 2px solid rgba(255,45,120,0.15);
+}
+
+/* Rail sleepers (the horizontal bars under a train track) */
+.train-track::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 40px,
+    rgba(255,45,120,0.06) 40px,
+    rgba(255,45,120,0.06) 42px
+  );
+  pointer-events: none;
+}
+
+/* Electric wire above the track */
+.train-wire {
+  position: absolute;
+  top: -8px;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(0,245,255,0.3) 10%,
+    rgba(0,245,255,0.5) 50%,
+    rgba(0,245,255,0.3) 90%,
+    transparent 100%
+  );
+}
+
+/* Spark that travels along the wire */
+.train-wire::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  width: 6px; height: 6px;
+  background: #00F5FF;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00F5FF, 0 0 20px rgba(0,245,255,0.6);
+  animation: sparkTravel 4s linear infinite;
+}
+
+@keyframes sparkTravel {
+  0%   { left: -10px; opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
 .marquee-wrapper::before,
 .marquee-wrapper::after {
   content: '';
   position: absolute;
   top: 0; bottom: 0;
-  width: 80px;
+  width: 100px;
   z-index: 2;
+  pointer-events: none;
 }
 .marquee-wrapper::before { left: 0; background: linear-gradient(90deg, var(--purple), transparent); }
 .marquee-wrapper::after  { right: 0; background: linear-gradient(-90deg, var(--purple), transparent); }
+
 .marquee-track {
   display: flex;
   gap: 0;
   width: max-content;
   animation: marquee 28s linear infinite;
+  align-items: center;
 }
+
 @keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Train engine that leads the marquee */
+.train-lead {
+  display: flex;
+  align-items: center;
+  padding: 0 24px 0 8px;
+  animation: trainBob 0.4s ease-in-out infinite alternate;
+  flex-shrink: 0;
+}
+.train-lead .train-engine {
+  position: relative;
+  width: 72px;
+  height: 30px;
+  border-radius: 14px 14px 8px 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06), 0 0 20px rgba(0,245,255,0.14);
+  overflow: hidden;
+}
+.train-lead .train-engine::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: -12px;
+  width: 16px;
+  height: 18px;
+  border-radius: 8px 8px 4px 4px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+.train-lead .train-engine::after {
+  content: '';
+  position: absolute;
+  right: 4px;
+  top: 8px;
+  width: 18px;
+  height: 14px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.18);
+}
+.train-lead .train-engine .train-cab {
+  position: absolute;
+  left: 22px;
+  top: 8px;
+  width: 18px;
+  height: 12px;
+  border-radius: 4px 4px 2px 2px;
+  background: rgba(255,255,255,0.24);
+}
+.train-lead .train-engine .train-window {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  width: 12px;
+  height: 8px;
+  border-radius: 2px;
+  background: rgba(0,245,255,0.35);
+}
+.train-lead .train-engine .train-wheels {
+  position: absolute;
+  bottom: -6px;
+  left: 14px;
+  display: flex;
+  gap: 12px;
+}
+.train-lead .train-engine .train-wheel {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pink);
+  box-shadow: 0 0 12px rgba(255,45,120,0.35);
+}
+.train-lead .train-engine .train-wheel::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+}
+
+@keyframes trainBob {
+  from { transform: translateY(-1px); }
+  to   { transform: translateY(1px); }
+}
+
+/* Steam puffs behind the train */
+.train-steam {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 20px;
+}
+
+.steam-puff {
+  font-size: 10px;
+  opacity: 0;
+  animation: steamPuff 1.2s ease-out infinite;
+  color: rgba(255,255,255,0.4);
+}
+.steam-puff:nth-child(1) { animation-delay: 0s; }
+.steam-puff:nth-child(2) { animation-delay: 0.3s; }
+.steam-puff:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes steamPuff {
+  0%   { opacity: 0; transform: translateY(0) scale(0.8); }
+  30%  { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(-12px) scale(1.4); }
+}
+
 .marquee-item {
   display: flex;
   align-items: center;
@@ -915,10 +1217,34 @@ section.visible { opacity: 1; transform: none; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
+  position: relative;
 }
+
+/* Window-like divider between items */
+.marquee-item::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: rgba(255,45,120,0.12);
+}
+
 .marquee-item span {
   color: var(--pink);
-  font-size: 16px;
+  font-size: 14px;
+}
+
+/* Station stop dots */
+.marquee-item span.stop {
+  width: 5px; height: 5px;
+  background: var(--pink);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 6px var(--pink);
+  font-size: 0;
+  flex-shrink: 0;
 }
 
 /* ── Websites Gallery ───────────────────────────────────── */
@@ -1154,11 +1480,45 @@ section.visible { opacity: 1; transform: none; }
 .contact-email:hover { border-color: var(--pink); }
 
 /* Contact form */
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(340px, 1fr);
+  gap: 34px;
+  align-items: start;
+  margin-top: 24px;
+}
+.contact-copy {
+  max-width: 560px;
+}
+.contact-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.contact-image-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  min-height: 220px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 16px 28px rgba(0,0,0,0.14);
+}
+.contact-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.contact-image-card:hover img {
+  transform: scale(1.04);
+}
 .contact-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
-  max-width: 560px;
+  max-width: 100%;
   margin-top: 32px;
 }
 .form-group {
@@ -1290,8 +1650,11 @@ section.visible { opacity: 1; transform: none; }
   .sidebar { display: none; }
   .mobile-nav { display: flex; }
   .main { margin-left: 0; padding: 80px 28px 80px; max-width: 100%; width: 100%; }
+  .hero-grid { display: block; }
+  .hero-aside { justify-content: flex-start; margin-top: 24px; }
   .about-grid { grid-template-columns: 1fr; }
   .about-photo { width: 120px; height: 120px; }
+  .contact-grid { grid-template-columns: 1fr; }
   .contact-form { grid-template-columns: 1fr; }
 }
 
@@ -1659,14 +2022,29 @@ section.visible { opacity: 1; transform: none; }
 
     <!-- 01 Hero -->
     <section id="hero" class="visible">
-      <div class="hero-eyebrow">Available for work</div>
-      <h1 class="hero-headline">
-        <span class="line"><span class="line-inner">Hi, I'm</span></span>
-        <span class="line"><span class="line-inner accent" id="heroName">Wyatt Bedor.</span></span>
-        <span class="line"><span class="line-inner">I make things</span></span>
-        <span class="line"><span class="line-inner">for the <span id="rotating-word" style="color:var(--pink);font-style:italic;">web.</span></span></span>
-      </h1>
-      <p class="hero-sub">A full-stack developer based in New York focused on building beautiful, performant experiences that live at the intersection of design and engineering.</p>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-eyebrow">Available for work</div>
+          <h1 class="hero-headline">
+            <span class="line"><span class="line-inner">Hi, I'm</span></span>
+            <span class="line"><span class="line-inner accent" id="heroName">Wyatt Bedor.</span></span>
+            <span class="line"><span class="line-inner">I make things</span></span>
+            <span class="line"><span class="line-inner">for the <span id="rotating-word" style="color:var(--pink);font-style:italic;">web.</span></span></span>
+          </h1>
+          <p class="hero-sub">A full-stack developer based in New York focused on building beautiful, performant experiences that live at the intersection of design and engineering.</p>
+        </div>
+
+        <aside class="hero-aside">
+          <div class="hero-card">
+            <div class="hero-card-badge">Featured</div>
+            <div class="hero-card-preview">
+              <img src="websites/cherry-blossom.png" alt="Neon interface concept" class="hero-card-image">
+            </div>
+            <div class="hero-card-footer">See the work below →</div>
+          </div>
+        </aside>
+      </div>
+
       <section id="work">
   <div id="app" v-cloak>
     <div class="sec-num">03 — work</div>
@@ -1719,7 +2097,7 @@ section.visible { opacity: 1; transform: none; }
 
       <div class="stats-strip">
         <div class="stat-item">
-          <div class="stat-num"><span class="counter" data-target="5">0</span>+</div>
+          <div class="stat-num"><span class="counter" data-target="3">0</span>+</div>
           <div class="stat-label">Years exp.</div>
         </div>
         <div class="stat-item">
@@ -1727,7 +2105,7 @@ section.visible { opacity: 1; transform: none; }
           <div class="stat-label">Projects</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num"><span class="counter" data-target="18">0</span></div>
+          <div class="stat-num"><span class="counter" data-target="1">0</span>+</div>
           <div class="stat-label">Clients</div>
         </div>
         <div class="stat-item">
@@ -1738,39 +2116,68 @@ section.visible { opacity: 1; transform: none; }
     </section>
 
     <!-- Marquee -->
-    <div class="marquee-wrapper" style="margin-top:60px;">
-      <div class="marquee-track" id="marqueeTrack">
-        <div class="marquee-item"><span>✦</span> React</div>
-        <div class="marquee-item"><span>✦</span> TypeScript</div>
-        <div class="marquee-item"><span>✦</span> Node.js</div>
-        <div class="marquee-item"><span>✦</span> PostgreSQL</div>
-        <div class="marquee-item"><span>✦</span> Docker</div>
-        <div class="marquee-item"><span>✦</span> AWS</div>
-        <div class="marquee-item"><span>✦</span> Figma</div>
-        <div class="marquee-item"><span>✦</span> Next.js</div>
-        <div class="marquee-item"><span>✦</span> Python</div>
-        <div class="marquee-item"><span>✦</span> FastAPI</div>
-        <div class="marquee-item"><span>✦</span> Redis</div>
-        <div class="marquee-item"><span>✦</span> Vue</div>
-        <div class="marquee-item"><span>✦</span> Tailwind</div>
-        <div class="marquee-item"><span>✦</span> GraphQL</div>
-        <!-- duplicate for seamless loop -->
-        <div class="marquee-item"><span>✦</span> React</div>
-        <div class="marquee-item"><span>✦</span> TypeScript</div>
-        <div class="marquee-item"><span>✦</span> Node.js</div>
-        <div class="marquee-item"><span>✦</span> PostgreSQL</div>
-        <div class="marquee-item"><span>✦</span> Docker</div>
-        <div class="marquee-item"><span>✦</span> AWS</div>
-        <div class="marquee-item"><span>✦</span> Figma</div>
-        <div class="marquee-item"><span>✦</span> Next.js</div>
-        <div class="marquee-item"><span>✦</span> Python</div>
-        <div class="marquee-item"><span>✦</span> FastAPI</div>
-        <div class="marquee-item"><span>✦</span> Redis</div>
-        <div class="marquee-item"><span>✦</span> Vue</div>
-        <div class="marquee-item"><span>✦</span> Tailwind</div>
-        <div class="marquee-item"><span>✦</span> GraphQL</div>
+<div class="marquee-wrapper" style="margin-top:60px;">
+  <div class="train-track">
+    <div class="train-wire"></div>
+    <div class="marquee-track" id="marqueeTrack">
+
+      <!-- Train locomotive leads the way -->
+      <div class="train-lead">
+        <div class="train-engine">
+          <div class="train-cab"></div>
+          <div class="train-window"></div>
+          <div class="train-wheels">
+            <span class="train-wheel"></span>
+            <span class="train-wheel"></span>
+          </div>
+        </div>
       </div>
+      <div class="train-steam">
+        <span class="steam-puff">◦</span>
+        <span class="steam-puff">◦</span>
+        <span class="steam-puff">◦</span>
+      </div>
+
+      <!-- Station stops = your tech stack -->
+      <div class="marquee-item"><span class="stop"></span> React</div>
+      <div class="marquee-item"><span class="stop"></span> TypeScript</div>
+      <div class="marquee-item"><span class="stop"></span> Node.js</div>
+      <div class="marquee-item"><span class="stop"></span> JSON</div>
+      <div class="marquee-item"><span class="stop"></span> AWS</div>
+      <div class="marquee-item"><span class="stop"></span> Figma</div>
+      <div class="marquee-item"><span class="stop"></span> Next.js</div>
+      <div class="marquee-item"><span class="stop"></span> FastAPI</div>
+      <div class="marquee-item"><span class="stop"></span> Vue</div>
+
+      <!-- Duplicate for seamless loop -->
+      <div class="train-lead">
+        <div class="train-engine">
+          <div class="train-cab"></div>
+          <div class="train-window"></div>
+          <div class="train-wheels">
+            <span class="train-wheel"></span>
+            <span class="train-wheel"></span>
+          </div>
+        </div>
+      </div>
+      <div class="train-steam">
+        <span class="steam-puff">◦</span>
+        <span class="steam-puff">◦</span>
+        <span class="steam-puff">◦</span>
+      </div>
+      <div class="marquee-item"><span class="stop"></span> React</div>
+      <div class="marquee-item"><span class="stop"></span> TypeScript</div>
+      <div class="marquee-item"><span class="stop"></span> Node.js</div>
+      <div class="marquee-item"><span class="stop"></span> JSON</div>
+      <div class="marquee-item"><span class="stop"></span> AWS</div>
+      <div class="marquee-item"><span class="stop"></span> Figma</div>
+      <div class="marquee-item"><span class="stop"></span> Next.js</div>
+      <div class="marquee-item"><span class="stop"></span> FastAPI</div>
+      <div class="marquee-item"><span class="stop"></span> Vue</div>
+
     </div>
+  </div>
+</div>
 
     <!-- 02 About -->
     <section id="about">
@@ -1778,7 +2185,7 @@ section.visible { opacity: 1; transform: none; }
       <h2 class="sec-title scramble" data-text="About me">About me</h2>
       <div class="about-grid">
         <div class="about-text">
-          <p>I'm a developer with <strong>5 years of experience</strong> turning complex problems into clean, user-centric solutions. I care deeply about <strong>performance</strong>, <strong>accessibility</strong>, and the invisible polish that makes good products feel great.</p>
+          <p>I'm a developer with <strong>3+ years of experience</strong> turning complex problems into clean, user-centric solutions. I care deeply about <strong>performance</strong>, <strong>accessibility</strong>, and the invisible polish that makes good products feel great.</p>
           <p>My work lives at the intersection of engineering rigour and design sensibility — I believe the best interfaces are the ones that feel <strong>effortless</strong>, even when the underlying complexity is anything but.</p>
           <p>When I'm not shipping code I'm probably reading design history, hiking, or reverse-engineering a UI I admire.</p>
         </div>
@@ -1843,41 +2250,39 @@ section.visible { opacity: 1; transform: none; }
       <div class="skill-group">
         <div class="skill-group-label">Frontend</div>
         <div class="skills-row">
-          <span class="skill-pill">React</span>
+          <span class="skill-pill">JavaScript</span>
           <span class="skill-pill">Vue</span>
-          <span class="skill-pill">Next.js</span>
-          <span class="skill-pill">TypeScript</span>
-          <span class="skill-pill">Tailwind</span>
+          <span class="skill-pill">HTML</span>
+          <span class="skill-pill">CSS</span>
+          <span class="skill-pill">JSON</span>
         </div>
       </div>
       <div class="skill-group">
         <div class="skill-group-label">Backend</div>
         <div class="skills-row">
-          <span class="skill-pill">Node.js</span>
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">FastAPI</span>
-          <span class="skill-pill">PostgreSQL</span>
-          <span class="skill-pill">Redis</span>
+          <span class="skill-pill">Design</span>
+          <span class="skill-pill">Color Scheme</span>
+          <span class="skill-pill">Animations</span>
         </div>
       </div>
       <div class="skill-group">
         <div class="skill-group-label">Tooling</div>
         <div class="skills-row">
-          <span class="skill-pill">Git</span>
-          <span class="skill-pill">Docker</span>
-          <span class="skill-pill">Figma</span>
-          <span class="skill-pill">AWS</span>
+          <span class="skill-pill">Claude</span>
+          <span class="skill-pill">ChatGPT</span>
+          <span class="skill-pill">VS Code</span>
+          <span class="skill-pill">Replit</span>
         </div>
       </div>
 
       <!-- Skill bars -->
       <div class="skill-bar-section" id="skillBars">
         <div class="skill-group-label" style="margin-bottom:18px;">Proficiency</div>
-        <div class="skill-bar-item"><span class="skill-bar-label">React / Next</span><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div><span class="skill-bar-pct">95%</span></div>
-        <div class="skill-bar-item"><span class="skill-bar-label">TypeScript</span><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div><span class="skill-bar-pct">90%</span></div>
-        <div class="skill-bar-item"><span class="skill-bar-label">Node / Python</span><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div><span class="skill-bar-pct">85%</span></div>
-        <div class="skill-bar-item"><span class="skill-bar-label">SQL / Redis</span><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div><span class="skill-bar-pct">80%</span></div>
-        <div class="skill-bar-item"><span class="skill-bar-label">DevOps / AWS</span><div class="skill-bar-track"><div class="skill-bar-fill" data-width="72"></div></div><span class="skill-bar-pct">72%</span></div>
+        <div class="skill-bar-item"><span class="skill-bar-label">Vue</span><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div><span class="skill-bar-pct">95%</span></div>
+        <div class="skill-bar-item"><span class="skill-bar-label">JavaScript</span><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div><span class="skill-bar-pct">90%</span></div>
+        <div class="skill-bar-item"><span class="skill-bar-label">HTML</span><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div><span class="skill-bar-pct">85%</span></div>
+        <div class="skill-bar-item"><span class="skill-bar-label">CSS</span><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div><span class="skill-bar-pct">80%</span></div>
+        <div class="skill-bar-item"><span class="skill-bar-label">JSON</span><div class="skill-bar-track"><div class="skill-bar-fill" data-width="72"></div></div><span class="skill-bar-pct">72%</span></div>
       </div>
     </section>
 
@@ -1885,27 +2290,40 @@ section.visible { opacity: 1; transform: none; }
     <section id="contact">
       <div class="sec-num">05 — contact</div>
       <h2 class="sec-title scramble" data-text="Get in touch">Get in touch</h2>
-      <p class="contact-intro">Whether you have a project in mind, a question, or just want to say hello — my inbox is always open.</p>
-      <a href="mailto:hello@wyattbedor.dev" class="contact-email" id="emailLink">hello@wyattbedor.dev</a>
+      <div class="contact-grid">
+        <div class="contact-copy">
+          <p class="contact-intro">Whether you have a project in mind, a question, or just want to say hello — my inbox is always open.</p>
+          <a href="mailto:526wbedor@frhsd.com" class="contact-email" id="emailLink">526wbedor@frhsd.com</a>
 
-      <div class="contact-form">
-        <div class="form-group">
-          <label class="form-label" for="fname">Name</label>
-          <input class="form-input" id="fname" type="text" placeholder="Ada Lovelace" autocomplete="off">
+          <div class="contact-form">
+            <div class="form-group">
+              <label class="form-label" for="fname">Name</label>
+              <input class="form-input" id="fname" type="text" placeholder="Ada Lovelace" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="femail">Email</label>
+              <input class="form-input" id="femail" type="email" placeholder="ada@example.com" autocomplete="off">
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="fmsg">Message</label>
+              <textarea class="form-textarea" id="fmsg" placeholder="Tell me about your project…"></textarea>
+            </div>
+            <div class="form-group full">
+              <button class="form-submit magnetic" id="formSubmit">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+                Send message
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label class="form-label" for="femail">Email</label>
-          <input class="form-input" id="femail" type="email" placeholder="ada@example.com" autocomplete="off">
-        </div>
-        <div class="form-group full">
-          <label class="form-label" for="fmsg">Message</label>
-          <textarea class="form-textarea" id="fmsg" placeholder="Tell me about your project…"></textarea>
-        </div>
-        <div class="form-group full">
-          <button class="form-submit magnetic" id="formSubmit">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-            Send message
-          </button>
+
+        <div class="contact-gallery">
+          <div class="contact-image-card">
+            <img src="websites/susho.png" alt="Contact preview 1">
+          </div>
+          <div class="contact-image-card">
+            <img src="websites/ramen.png" alt="Contact preview 2">
+          </div>
         </div>
       </div>
     </section>
@@ -2415,7 +2833,7 @@ $('#formSubmit') && $('#formSubmit').addEventListener('click', () => {
    ================================================================ */
 const gallery = $('#websitesGallery');
 if (gallery) {
-  let isDown = false, startX, startY, scrollLeft, scrollTop;
+  let isDown = false, startX, scrollLeft;
   gallery.addEventListener('pointerdown', e => {
     // Don't start drag if clicking on a link
     if (e.target.closest('a')) return;
@@ -2424,9 +2842,7 @@ if (gallery) {
     gallery.setPointerCapture(e.pointerId);
     const r = gallery.getBoundingClientRect();
     startX = e.clientX - r.left;
-    startY = e.clientY - r.top;
     scrollLeft = gallery.scrollLeft;
-    scrollTop = gallery.scrollTop;
   });
   gallery.addEventListener('pointerup',    () => { isDown = false; gallery.classList.remove('active'); });
   gallery.addEventListener('pointerleave', () => { isDown = false; gallery.classList.remove('active'); });
@@ -2435,7 +2851,6 @@ if (gallery) {
     e.preventDefault();
     const r = gallery.getBoundingClientRect();
     gallery.scrollLeft = scrollLeft - (e.clientX - r.left - startX) * 1.5;
-    gallery.scrollTop  = scrollTop  - (e.clientY - r.top  - startY) * 1.5;
   });
 }
 
