@@ -1293,10 +1293,100 @@ section.visible { opacity: 1; transform: none; }
 }
 .website-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
 .website-item:hover img { transform: scale(1.06); }
+
+.featured-section {
+  margin-bottom: 36px;
+}
+.featured-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.featured-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-shadow: 0 0 18px rgba(255,45,120,0.06);
+}
+.featured-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 12px;
+}
+.featured-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 10px 28px rgba(0,0,0,0.2);
+  transition: transform 0.45s cubic-bezier(0.22,0.9,0.28,1), box-shadow 0.35s, border-color 0.25s;
+  will-change: transform;
+  width: 100%;
+  display: block;
+}
+.featured-card:focus-within,
+.featured-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(240,146,221,0.16);
+  box-shadow: 0 26px 68px rgba(0,0,0,0.26);
+}
+.featured-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.22,0.9,0.28,1), filter 0.4s;
+}
+.featured-card:hover img {
+  transform: scale(1.04) translateY(-2px);
+  filter: saturate(1.05) contrast(1.02);
+}
+.featured-card-blur {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13,10,26,0) 44%, rgba(13,10,26,0.92) 100%);
+  pointer-events: none;
+}
+.featured-card-info {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 16px;
+  z-index: 2;
+  transition: transform 0.35s var(--ease-expo), opacity 0.35s;
+}
+.featured-card:focus-within .featured-card-info,
+.featured-card:hover .featured-card-info {
+  transform: translateY(-4px);
+  opacity: 1;
+}
+.featured-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.featured-card-desc {
+  font-size: 13px;
+  color: rgba(232,196,212,0.85);
+  line-height: 1.5;
+  max-height: 3.6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .website-overlay {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  background: linear-gradient(to top, rgba(37,30,62,0.97) 0%, rgba(37,30,62,0.6) 60%, transparent 100%);
   padding: 20px 14px 14px;
   transform: translateY(40%);
   transition: transform 0.35s var(--ease-expo);
@@ -2050,6 +2140,28 @@ section.visible { opacity: 1; transform: none; }
     <div class="sec-num">03 — work</div>
     <h2 class="sec-title scramble" data-text="Websites">Websites</h2>
 
+    <div class="featured-section" v-if="featuredSites.length">
+      <div class="featured-heading">
+        <div class="sec-num">Featured</div>
+        <h3 class="featured-title">Featured websites</h3>
+      </div>
+      <div class="featured-gallery">
+        <a
+          v-for="site in featuredSites"
+          :key="site.id"
+          :href="site.pageUrl || site.url"
+          class="featured-card tilt-card"
+          :aria-label="site.title">
+          <img :src="site.image" :alt="site.title">
+          <div class="featured-card-blur"></div>
+          <div class="featured-card-info">
+            <div class="featured-card-title">{{ site.title }}</div>
+            <div class="featured-card-desc">{{ site.description }}</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
     <!-- Tab buttons -->
     <div class="year-tabs">
       <button 
@@ -2218,26 +2330,6 @@ section.visible { opacity: 1; transform: none; }
             <div class="timeline-company">// Pixel Studio · Brooklyn</div>
             <div class="timeline-desc">Developed bespoke WordPress and Shopify themes for creative agencies. First professional exposure to performance optimisation and design systems.</div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 Work -->
-    <section id="work">
-      <div id="app" v-cloak>
-        <div class="sec-num">03 — work</div>
-        <h2 class="sec-title scramble" data-text="Websites">Websites</h2>
-        <div class="websites-scroll" id="websitesGallery">
-          <div class="websites-gallery">
-            <a v-for="site in websites" :key="site.id" :href="site.url" class="website-item tilt-card" target="_blank" :aria-label="site.title">
-              <img :src="site.image" :alt="site.title">
-              <div class="website-overlay">
-                <div class="website-title">{{ site.title }}</div>
-                <div class="website-desc">{{ site.description }}</div>
-              </div>
-            </a>
-          </div>
-          <p v-if="!websites.length" class="website-loading">Loading websites…</p>
         </div>
       </div>
     </section>
@@ -2871,6 +2963,8 @@ const vueApp = Vue.createApp({
   data() {
     return {
       activeTab: 'sophomore',
+      featuredIds: [1, 2, 9, 12, 16, 17],
+      featuredPages: [],
       websites: {
         sophomore: [],
         junior: [],
@@ -2886,6 +2980,17 @@ const vueApp = Vue.createApp({
     };
   },
   computed: {
+    featuredSites() {
+      const pagesById = this.featuredPages.reduce((map, page) => {
+        map[page.id] = page;
+        return map;
+      }, {});
+      const allSites = Object.values(this.websites).flat();
+      return this.featuredIds
+        .map(id => allSites.find(site => site.id === id))
+        .filter(Boolean)
+        .map(site => ({ ...site, pageUrl: pagesById[site.id]?.pageUrl || site.url }));
+    },
     currentSites() {
       return this.websites[this.activeTab] || [];
     },
@@ -2894,10 +2999,13 @@ const vueApp = Vue.createApp({
     }
   },
   mounted() {
-    fetch('websites.json')
-      .then(r => r.ok ? r.json() : Promise.reject())
-      .then(data => { this.websites = data; })
-      .catch(() => {});
+    Promise.all([
+      fetch('websites.json').then(r => r.ok ? r.json() : Promise.reject()),
+      fetch('featured-pages.json').then(r => r.ok ? r.json() : Promise.reject())
+    ]).then(([websites, featuredData]) => {
+      this.websites = websites;
+      this.featuredPages = featuredData.featuredPages || [];
+    }).catch(() => {});
   }
 });
 vueApp.mount('#app');

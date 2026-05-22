@@ -6,21 +6,21 @@
           "title": "Marlboro Farmer's Market",
           "description": "Website for Marlboro Farmer's Market",
           "image": "websites/Marlboro-Farmer's-Market.png",
-          "url": "https://wyatt987.github.io/Marlboro-Farmer's-Market/"
+          "url": "https://replit.com/@WyattBedor/Italy"
   },
     {
     "id": 2,
     "title": "Our Solar",
     "description": "Website for Our Solar",
     "image": "websites/Our-Solar.png",
-    "url": "https://wyatt987.github.io/Our-Solar/"
+    "url": "https://replit.com/@WyattBedor/Our-Solar"
   },
     {
     "id": 3,
     "title": "Courtside Coffee",
     "description": "Website for Courtside Coffee",
     "image": "websites/Courtside-coffee.png",
-    "url": "https://wyatt987.github.io/Courtside-coffee/"
+    "url": "https://replit.com/@WyattBedor/Courtside-Coffee"
   },
     {
     "id": 4,
@@ -133,6 +133,13 @@
     "description": "Criminology study resources",
     "image": "websites/criminology.png",
     "url": "https://wyatt987.github.io/Criminology/"
-  }
+  },
+    {
+      "id": 19,
+      "title": "1v1.lol",
+      "description": "Game",
+      "image": "websites/1v1.lol.png",
+      "url": "https://wyatt987.github.io/1v1.lolz/"
+    }
   ]
 }

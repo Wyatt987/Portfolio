@@ -1,0 +1,118 @@
+{
+  "featuredPages": [
+    {
+      "id": 1,
+      "slug": "marlboro-farmers-market",
+      "title": "Marlboro Farmer's Market",
+      "description": "An inviting farmer's market website with bright grid layouts and local-market styling.",
+      "image": "websites/Marlboro-Farmer's-Market.png",
+      "siteUrl": "https://wyatt987.github.io/Marlboro-Farmer's-Market/",
+      "pageUrl": "featured/marlboro-farmers-market.html",
+      "details": {
+        "year": "2022",
+        "category": "Community showcase",
+        "tech": ["HTML", "CSS", "JavaScript"],
+        "highlights": [
+          "Local event-focused design",
+          "Clean, accessible layout",
+          "Strong visual hierarchy for vendors"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "slug": "our-solar",
+      "title": "Our Solar",
+      "description": "A clean solar energy showcase with responsive sections and bright UI details.",
+      "image": "websites/Our-Solar.png",
+      "siteUrl": "https://wyatt987.github.io/Our-Solar/",
+      "pageUrl": "featured/our-solar.html",
+      "details": {
+        "year": "2023",
+        "category": "Student portfolio project",
+        "tech": ["HTML", "CSS", "JavaScript"],
+        "highlights": [
+          "Interactive solar panel section",
+          "Mobile-friendly layout",
+          "Modern branding and typography"
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "slug": "name-generator",
+      "title": "Name Generator",
+      "description": "A playful tool for generating random names with a slick, easy-to-use interface.",
+      "image": "websites/Name-Gen.png",
+      "siteUrl": "https://wyatt987.github.io/Name-Gen/",
+      "pageUrl": "featured/name-generator.html",
+      "details": {
+        "year": "2023",
+        "category": "Web utility",
+        "tech": ["HTML", "CSS", "JavaScript"],
+        "highlights": [
+          "Instant random name generation",
+          "Clean card-based UI",
+          "Simple share and copy interactions"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "slug": "bobsdoll-travel",
+      "title": "Bobsdoll Travel",
+      "description": "A travel planning site with immersive destination details and itinerary styling.",
+      "image": "websites/bobs-Doll-travel.png",
+      "siteUrl": "https://wyatt987.github.io/bobsdoll-travel/",
+      "pageUrl": "featured/bobsdoll-travel.html",
+      "details": {
+        "year": "2024",
+        "category": "Travel concept",
+        "tech": ["HTML", "CSS", "JavaScript"],
+        "highlights": [
+          "Destination showcase layout",
+          "Responsive planning UI",
+          "Branded color palette and imagery"
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "slug": "track-site",
+      "title": "Track Site",
+      "description": "A track and field information page with clean athlete stats and event highlights.",
+      "image": "websites/track site.png",
+      "siteUrl": "https://alleniverson25.github.io/TRACKSITE/",
+      "pageUrl": "featured/track-site.html",
+      "details": {
+        "year": "2024",
+        "category": "Sports showcase",
+        "tech": ["HTML", "CSS", "JavaScript"],
+        "highlights": [
+          "Event-driven presentation",
+          "Athlete profile sections",
+          "Minimal, readable UI"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "slug": "magic-8-ball",
+      "title": "Magic 8-ball",
+      "description": "A retro-inspired fortune teller app with playful animations and quick feedback.",
+      "image": "websites/magic-8-ball.png",
+      "siteUrl": "https://wyatt987.github.io/Magic-8-Ball-Project/",
+      "pageUrl": "featured/magic-8-ball.html",
+      "details": {
+        "year": "2023",
+        "category": "Interactive game",
+        "tech": ["HTML", "CSS", "JavaScript"],
+        "highlights": [
+          "Animated response experience",
+          "Nostalgic vintage styling",
+          "Fast and engaging user interaction"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bobsdoll Travel — Wyatt Bedor</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    body { margin:0; min-height:100vh; font-family:'DM Mono', monospace; background:#0d0a1a; color:#e8c4d4; display:flex; align-items:center; justify-content:center; padding:24px; }
+    .page { max-width:900px; width:100%; background:rgba(17,13,36,0.96); border:1px solid rgba(255,45,120,0.16); border-radius:24px; box-shadow:0 28px 80px rgba(0,0,0,0.3); overflow:hidden; }
+    .hero { display:grid; grid-template-columns:1fr 320px; gap:32px; padding:40px; }
+    .hero h1 { margin:0 0 16px; font-family:'DM Serif Display', serif; font-size:clamp(34px,4vw,52px); color:#ff6b9d; }
+    .hero p { margin:0 0 18px; line-height:1.8; color:#c9b2c4; }
+    .details { display:grid; gap:16px; margin-top:24px; }
+    .details strong { color:#ff6b9d; }
+    .label { font-size:10px; text-transform:uppercase; letter-spacing:0.18em; color:rgba(255,107,157,0.72); margin-bottom:8px; }
+    .list { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+    .list li { background:rgba(255,45,120,0.08); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:14px; }
+    .hero-img { width:100%; border-radius:18px; overflow:hidden; box-shadow:0 20px 60px rgba(255,45,120,0.14); }
+    .hero-img img { width:100%; height:auto; display:block; }
+    .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:24px; }
+    .action { display:inline-flex; align-items:center; justify-content:center; padding:14px 20px; border-radius:999px; border:1px solid rgba(255,45,120,0.25); color:#ff6b9d; text-decoration:none; transition:background 0.24s; }
+    .action:hover { background:rgba(255,45,120,0.15); }
+    .back { border-color:rgba(0,245,255,0.25); color:#00f5ff; }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <div class="hero">
+      <div>
+        <div class="label">Featured project</div>
+        <h1>Bobsdoll Travel</h1>
+        <p>A travel planning site with immersive destination details and itinerary styling. Designed for a modern travel experience with a polished content layout.</p>
+        <div class="details">
+          <div><strong>Category:</strong> Travel concept</div>
+          <div><strong>Year:</strong> 2024</div>
+          <div><strong>Technology:</strong> HTML, CSS, JavaScript</div>
+        </div>
+        <div class="label" style="margin-top:24px;">Highlights</div>
+        <ul class="list">
+          <li>Destination showcase layout</li>
+          <li>Responsive planning UI</li>
+          <li>Branded color palette and imagery</li>
+        </ul>
+        <div class="actions">
+          <a href="../index.html" class="action back">Back to portfolio</a>
+          <a href="https://wyatt987.github.io/bobsdoll-travel/" target="_blank" class="action">Visit live site</a>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="../websites/bobs-Doll-travel.png" alt="Bobsdoll Travel project preview">
+      </div>
+    </div>
+  </article>
+</body>
+</html>
