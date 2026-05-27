@@ -13,7 +13,7 @@
     .hero p { margin:0 0 18px; line-height:1.8; color:#c9b2c4; }
     .details { display:grid; gap:16px; margin-top:24px; }
     .details strong { color:#ff6b9d; }
-    .label { font-size:10px; text-transform:uppercase; letter-spacing:0.18em; color:rgba(255,107,157,0.72); margin-bottom:8px; }
+    .label { font-size:12px; text-transform:uppercase; letter-spacing:0.18em; color:rgba(255,107,157,0.72); margin-bottom:8px; }
     .list { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
     .list li { background:rgba(255,45,120,0.08); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:14px; }
     .hero-img { width:100%; border-radius:18px; overflow:hidden; box-shadow:0 20px 60px rgba(255,45,120,0.14); }
@@ -22,6 +22,12 @@
     .action { display:inline-flex; align-items:center; justify-content:center; padding:14px 20px; border-radius:999px; border:1px solid rgba(255,45,120,0.25); color:#ff6b9d; text-decoration:none; transition:background 0.24s; }
     .action:hover { background:rgba(255,45,120,0.15); }
     .back { border-color:rgba(0,245,255,0.25); color:#00f5ff; }
+    .notes { padding: 0 40px 40px; }
+    .notes h2 { margin: 0 0 16px; font-family:'DM Serif Display', serif; font-size: clamp(28px, 3vw, 38px); color: #ff6b9d; }
+    .notes p { margin: 0 0 14px; line-height: 1.75; color: #c9b2c4; }
+    .notes ul { margin: 0 0 18px; padding-left: 20px; }
+    .notes li { margin-bottom: 10px; }
+    .notes strong { color: #ff6b9d; }
   </style>
 </head>
 <body>
@@ -51,6 +57,20 @@
         <img src="../websites/magic-8-ball.png" alt="Magic 8-ball project preview">
       </div>
     </div>
+    <section class="notes">
+      <h2>Development Notes</h2>
+      <p><strong>JavaScript Functionality:</strong> This project uses JavaScript to implement the Magic 8-ball behavior. The script chooses a random answer from a list, updates the message text dynamically, and can be extended with animation or transition effects to improve the user experience.</p>
+      <ul>
+        <li><strong>Implement the JavaScript code</strong> by listening for the user action (button click or shake event) and selecting a response from the array.</li>
+        <li><strong>Customize the responses</strong> by editing the provided list of Magic 8-ball answers, then add your own personality or style to the messages.</li>
+        <li><strong>Enhance UX</strong> with animations or transitions, such as a fade-in for the answer, a bouncing ball effect, or subtle motion when the user asks a new question.</li>
+      </ul>
+      <p><strong>Customization:</strong> Replace the default Magic 8-ball imagery with your own photos or graphics to make the page feel more personal. You can also add more HTML elements like a footer, author credits, or a short project description.</p>
+      <ul>
+        <li>Add a footer with your name and a brief description of what makes this Magic 8-ball project unique.</li>
+        <li>Experiment with Bootstrap components such as alerts, badges, or button groups to enhance the design and add interactive styling.</li>
+      </ul>
+    </section>
   </article>
 </body>
 </html>

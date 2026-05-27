@@ -13,7 +13,7 @@
     .hero p { margin:0 0 18px; line-height:1.8; color:#c9b2c4; }
     .details { display:grid; gap:16px; margin-top:24px; }
     .details strong { color:#ff6b9d; }
-    .label { font-size:10px; text-transform:uppercase; letter-spacing:0.18em; color:rgba(255,107,157,0.72); margin-bottom:8px; }
+    .label { font-size:12px; text-transform:uppercase; letter-spacing:0.18em; color:rgba(255,107,157,0.72); margin-bottom:8px; }
     .list { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
     .list li { background:rgba(255,45,120,0.08); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:14px; }
     .hero-img { width:100%; border-radius:18px; overflow:hidden; box-shadow:0 20px 60px rgba(255,45,120,0.14); }
@@ -22,6 +22,12 @@
     .action { display:inline-flex; align-items:center; justify-content:center; padding:14px 20px; border-radius:999px; border:1px solid rgba(255,45,120,0.25); color:#ff6b9d; text-decoration:none; transition:background 0.24s; }
     .action:hover { background:rgba(255,45,120,0.15); }
     .back { border-color:rgba(0,245,255,0.25); color:#00f5ff; }
+    .notes { padding:0 40px 40px; }
+    .notes h2 { margin:32px 0 18px; font-family:'DM Serif Display', serif; font-size:clamp(28px,3vw,38px); color:#ff6b9d; }
+    .notes p, .notes li { color:#c9b2c4; line-height:1.75; }
+    .notes ul { padding-left:20px; margin:0 0 18px; }
+    .notes li { margin-bottom:10px; }
+    .notes strong { color:#ff6b9d; }
   </style>
 </head>
 <body>
@@ -51,6 +57,17 @@
         <img src="../websites/Our-Solar.png" alt="Our Solar project preview">
       </div>
     </div>
+    <section class="notes">
+      <h2>HTML tag learning notes</h2>
+      <p>This project helped me practice basic HTML structure using headings and line breaks. I used tags like <strong>&lt;h1&gt;</strong> through <strong>&lt;h5&gt;</strong> to create a clear page hierarchy, and <strong>&lt;br&gt;</strong> to separate short lines inside content sections.</p>
+      <ul>
+        <li><strong>&lt;h1&gt; to &lt;h5&gt;:</strong> used these tags to organize titles, subtitles, and section headings in a logical order.</li>
+        <li><strong>&lt;br&gt;:</strong> added manual line breaks for short explanatory text where a new paragraph was not needed.</li>
+        <li><strong>Semantic structure:</strong> learned how heading levels help browsers and users understand the page outline.</li>
+        <li><strong>Content clarity:</strong> the site uses headings to make solar energy topics easier to scan and understand.</li>
+      </ul>
+      <p>The result is a solar showcase page that demonstrates both visual design and the fundamentals of HTML tag usage.</p>
+    </section>
   </article>
 </body>
 </html>

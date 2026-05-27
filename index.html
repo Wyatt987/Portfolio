@@ -44,7 +44,7 @@
 
 .loader-text {
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   letter-spacing: 0.3em;
   color: rgba(255,45,120,0.7);
   text-transform: uppercase;
@@ -54,7 +54,7 @@
 
 .loader-sub {
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.2em;
   color: rgba(0,245,255,0.5);
   z-index: 1;
@@ -161,7 +161,7 @@
   position: fixed;
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.2em;
   color: rgba(255,45,120,0.12);
   border: 1px solid rgba(255,45,120,0.08);
@@ -186,7 +186,7 @@
 /* ── Japanese subtitle under role ────────────────────── */
 .s-role-jp {
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 300;
   color: var(--sage);
   letter-spacing: 0.15em;
@@ -223,7 +223,7 @@
 --rose:        #FFB3CC;
 --sage:        #00F5FF;
 --purple-mid:  #1a1030;
---purple-light:#2d1f4e;
+--purple-light:#ff00f2;
 --card-bg:     #110D24;
 --card-bg2:    #0a0814;
 --text-primary:#FF6B9D;
@@ -249,8 +249,8 @@ html { scroll-behavior: smooth; }
   gap: 8px;
 }
 
-.rain-control-label {
-  font-size: 9px;
+  .rain-control-label {
+  font-size: 11px;
   font-family: var(--font-mono);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -262,7 +262,7 @@ html { scroll-behavior: smooth; }
 
 .rain-control-label span {
   color: var(--pink);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .rain-slider {
@@ -306,7 +306,7 @@ body {
   background: var(--purple);
   color: var(--text-body);
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.65;
   min-height: 100vh;
   overflow-x: hidden;
@@ -481,7 +481,7 @@ body::after {
 }
 
 .s-role {
-  font-size: 11px;
+  font-size: 13px;
   font-family: var(--font-mono);
   color: var(--pink);
   letter-spacing: 0.08em;
@@ -502,7 +502,7 @@ body::after {
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
 .s-tagline {
-  font-size: 12.5px;
+  font-size: 15px;
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 44px;
@@ -510,7 +510,7 @@ body::after {
 }
 
 .nav-label {
-  font-size: 9px;
+  font-size: 11px;
   font-family: var(--font-mono);
   letter-spacing: 0.14em;
   color: var(--purple-light);
@@ -543,7 +543,7 @@ nav {
   flex-shrink: 0;
 }
 .nav-link .nl-text {
-  font-size: 11px;
+  font-size: 13px;
   font-family: var(--font-mono);
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -560,7 +560,7 @@ nav {
   position: absolute;
   right: 0; top: 50%;
   transform: translateY(-50%);
-  font-size: 9px;
+  font-size: 13px;
   font-family: var(--font-mono);
   color: var(--purple-light);
   opacity: 0;
@@ -570,16 +570,16 @@ nav {
 
 .s-socials {
   display: flex;
-  gap: 10px;
+  gap: 14px;
   margin-top: 36px;
 }
 .social-icon {
-  width: 32px; height: 32px;
+  width: 56px; height: 56px;
   border: 1px solid var(--border-mid);
-  border-radius: 6px;
+  border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
   color: var(--text-muted);
-  font-size: 14px;
+  font-size: 16px;
   text-decoration: none;
   transition: all 0.2s;
   cursor: none;
@@ -597,9 +597,7 @@ nav {
 }
 .social-icon:hover { border-color: var(--pink); color: var(--purple); }
 .social-icon:hover::before { transform: translateY(0); }
-.social-icon svg { width: 15px; height: 15px; fill: currentColor; position: relative; z-index: 1; }
-
-/* ── Scroll progress line ───────────────────────────────── */
+.social-icon svg { width: 34px; height: 34px; fill: currentColor; position: relative; z-index: 1; }
 #scroll-progress {
   position: fixed;
   top: 0; left: 0;
@@ -635,7 +633,7 @@ section {
 section.visible { opacity: 1; transform: none; }
 
 .sec-num {
-  font-size: 10px;
+  font-size: 12px;
   font-family: var(--font-mono);
   color: var(--pink);
   letter-spacing: 0.12em;
@@ -663,7 +661,7 @@ section.visible { opacity: 1; transform: none; }
 
 .hero-eyebrow {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.1em;
   color: var(--pink);
   text-transform: uppercase;
@@ -734,7 +732,7 @@ section.visible { opacity: 1; transform: none; }
 @keyframes underlineReveal { to { transform: scaleX(1); } }
 
 .hero-sub {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text-body);
   line-height: 1.7;
   max-width: 480px;
@@ -808,7 +806,7 @@ section.visible { opacity: 1; transform: none; }
   background: rgba(240,146,221,0.12);
   color: var(--pink);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 22px;
@@ -861,13 +859,13 @@ section.visible { opacity: 1; transform: none; }
   margin: 0;
   color: var(--text-muted);
   line-height: 1.75;
-  font-size: 13px;
+  font-size: 15px;
   z-index: 1;
 }
 .hero-card-footer {
   margin-top: 22px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--pink);
@@ -885,7 +883,7 @@ section.visible { opacity: 1; transform: none; }
   border: 1px solid var(--pink);
   border-radius: 6px;
   padding: 11px 26px;
-  font-size: 12px;
+  font-size: 14px;
   font-family: var(--font-mono);
   color: var(--pink);
   letter-spacing: 0.06em;
@@ -937,7 +935,7 @@ section.visible { opacity: 1; transform: none; }
 }
 .stat-num .counter { display: inline-block; }
 .stat-label {
-  font-size: 11px;
+  font-size: 13px;
   font-family: var(--font-mono);
   color: var(--text-muted);
   letter-spacing: 0.08em;
@@ -948,8 +946,8 @@ section.visible { opacity: 1; transform: none; }
 /* ── About ──────────────────────────────────────────────── */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 200px;
-  gap: 48px;
+  grid-template-columns: 1fr;
+  gap: 24px;
   align-items: start;
 }
 .about-text p {
@@ -1008,6 +1006,44 @@ section.visible { opacity: 1; transform: none; }
   transition: opacity 0.3s;
 }
 .about-photo:hover .about-initials { opacity: 0.1; }
+
+/* Dual-photo layout for freshman -> senior with arrow */
+.about-photos {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.about-photos { grid-column: 1 / -1; justify-self: center; margin-top: 8px; }
+.about-photos .photo-freshman,
+.about-photos .photo-senior {
+  width: 240px;
+  height: 240px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid var(--pink);
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-photos .photo-freshman img,
+.about-photos .photo-senior img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-arrow {
+  width: 96px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo-arrow svg { width: 100%; height: 100%; display: block; }
+
+@media (max-width: 800px) {
+  .about-photos { gap: 12px; }
+  .about-photos .photo-freshman,
+  .about-photos .photo-senior { width: 180px; height: 180px; }
+  .photo-arrow { transform: rotate(90deg); width: 34px; height: 96px; }
+}
 
 /* ── Marquee ────────────────────────────────────────────── */
 /* ── Bullet Train Marquee ────────────────────────────── */
@@ -1182,6 +1218,23 @@ section.visible { opacity: 1; transform: none; }
   to   { transform: translateY(1px); }
 }
 
+/* Accessibility: boost small UI font sizes for readability */
+.nav-label,
+.nav-link .nl-text,
+.nav-link .nl-progress,
+.rain-control-label,
+.skill-group-label,
+.form-label,
+.year-tab,
+.year-tab-num,
+.skill-bar-label,
+.skill-bar-pct,
+.website-desc,
+.form-group .form-label {
+  font-size: 13px !important;
+}
+
+
 /* Steam puffs behind the train */
 .train-steam {
   display: flex;
@@ -1211,7 +1264,7 @@ section.visible { opacity: 1; transform: none; }
   align-items: center;
   gap: 20px;
   padding: 0 28px;
-  font-size: 11px;
+  font-size: 13px;
   font-family: var(--font-mono);
   color: var(--text-muted);
   letter-spacing: 0.1em;
@@ -1233,7 +1286,7 @@ section.visible { opacity: 1; transform: none; }
 
 .marquee-item span {
   color: var(--pink);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* Station stop dots */
@@ -1407,7 +1460,7 @@ section.visible { opacity: 1; transform: none; }
 /* ── Skills ─────────────────────────────────────────────── */
 .skill-group { margin-bottom: 28px; }
 .skill-group-label {
-  font-size: 9px;
+  font-size: 11px;
   font-family: var(--font-mono);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1416,7 +1469,7 @@ section.visible { opacity: 1; transform: none; }
 }
 .skills-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .skill-pill {
-  font-size: 12px;
+  font-size: 14px;
   font-family: var(--font-mono);
   color: var(--pink);
   background: rgba(240,146,221,0.07);
@@ -1444,6 +1497,54 @@ section.visible { opacity: 1; transform: none; }
   box-shadow: 0 6px 20px rgba(240,146,221,0.2);
 }
 
+.skills-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(250px, 0.9fr);
+  gap: 28px;
+  align-items: start;
+  margin-top: 18px;
+}
+.skills-groups {
+  display: grid;
+  gap: 24px;
+}
+.skills-preview-card {
+  border-radius: 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 24px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 18px 40px rgba(0,0,0,0.16);
+}
+.skills-preview-card h3 {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--text-primary);
+}
+.skills-preview-placeholder {
+  min-height: 260px;
+  border-radius: 18px;
+  border: 1px dashed rgba(255,107,157,0.35);
+  background: rgba(255,45,120,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.skills-preview-placeholder span {
+  padding: 0 16px;
+  text-align: center;
+}
+
+@media (max-width: 860px) {
+  .skills-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Skill bar ──────────────────────────────────────────── */
 .skill-bar-section { margin-top: 28px; }
 .skill-bar-item {
@@ -1453,7 +1554,7 @@ section.visible { opacity: 1; transform: none; }
   margin-bottom: 14px;
 }
 .skill-bar-label {
-  font-size: 11px;
+  font-size: 13px;
   font-family: var(--font-mono);
   color: var(--text-muted);
   width: 100px;
@@ -1487,7 +1588,7 @@ section.visible { opacity: 1; transform: none; }
   box-shadow: 0 0 10px var(--pink);
 }
 .skill-bar-pct {
-  font-size: 10px;
+  font-size: 12px;
   font-family: var(--font-mono);
   color: var(--pink);
   width: 36px;
@@ -1527,7 +1628,7 @@ section.visible { opacity: 1; transform: none; }
   box-shadow: 0 0 20px rgba(240,146,221,0.9);
 }
 .timeline-period {
-  font-size: 10px;
+  font-size: 12px;
   font-family: var(--font-mono);
   color: var(--pink);
   letter-spacing: 0.1em;
@@ -1541,12 +1642,13 @@ section.visible { opacity: 1; transform: none; }
   margin-bottom: 3px;
 }
 .timeline-company {
-  font-size: 12px;
+  font-size: 14px;
   font-family: var(--font-mono);
   color: var(--text-muted);
   margin-bottom: 8px;
 }
 .timeline-desc { font-size: 13.5px; color: var(--text-body); line-height: 1.65; }
+.timeline-desc { font-size: 15px; color: var(--text-body); line-height: 1.65; }
 
 /* ── Contact ────────────────────────────────────────────── */
 .contact-intro {
@@ -1618,7 +1720,7 @@ section.visible { opacity: 1; transform: none; }
 }
 .form-group.full { grid-column: 1 / -1; }
 .form-label {
-  font-size: 9px;
+  font-size: 11px;
   font-family: var(--font-mono);
   color: var(--text-muted);
   letter-spacing: 0.14em;
@@ -1831,7 +1933,7 @@ section.visible { opacity: 1; transform: none; }
 
 .year-tab {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -1859,7 +1961,7 @@ section.visible { opacity: 1; transform: none; }
 }
 
 .year-tab-num {
-  font-size: 9px;
+  font-size: 11px;
   color: var(--pink);
   opacity: 0.6;
 }
@@ -1964,8 +2066,8 @@ section.visible { opacity: 1; transform: none; }
 </div>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#hero"    onclick="closeMobile()">01 — Intro</a>
-  <a href="#about"   onclick="closeMobile()">02 — About</a>
-  <a href="#work"    onclick="closeMobile()">03 — Work</a>
+  <a href="#work"    onclick="closeMobile()">02 — Work</a>
+  <a href="#about"   onclick="closeMobile()">03 — About</a>
   <a href="#skills"  onclick="closeMobile()">04 — Skills</a>
   <a href="#contact" onclick="closeMobile()">05 — Contact</a>
 </div>
@@ -2061,14 +2163,14 @@ section.visible { opacity: 1; transform: none; }
         <span class="nl-text">Intro</span>
         <span class="nl-progress">—</span>
       </a>
-      <a class="nav-link" href="#about">
-        <span class="nl-line"></span>
-        <span class="nl-text">About</span>
-        <span class="nl-progress">—</span>
-      </a>
       <a class="nav-link" href="#work">
         <span class="nl-line"></span>
         <span class="nl-text">Work</span>
+        <span class="nl-progress">—</span>
+      </a>
+      <a class="nav-link" href="#about">
+        <span class="nl-line"></span>
+        <span class="nl-text">About</span>
         <span class="nl-progress">—</span>
       </a>
       <a class="nav-link" href="#skills">
@@ -2083,7 +2185,7 @@ section.visible { opacity: 1; transform: none; }
       </a>
     </nav>
 
-    <div style="margin-top:28px;font-size:10px;font-family:var(--font-mono);color:var(--text-muted);letter-spacing:0.08em;display:flex;flex-direction:column;gap:4px;">
+    <div style="margin-top:28px;font-size:12px;font-family:var(--font-mono);color:var(--text-muted);letter-spacing:0.08em;display:flex;flex-direction:column;gap:4px;">
   <div><span id="live-time" style="color:var(--pink)"></span>&nbsp;NYC</div>
   <div><span id="tokyo-time"></span>&nbsp;東京</div>
 </div>
@@ -2301,10 +2403,29 @@ section.visible { opacity: 1; transform: none; }
           <p>My work lives at the intersection of engineering rigour and design sensibility — I believe the best interfaces are the ones that feel <strong>effortless</strong>, even when the underlying complexity is anything but.</p>
           <p>When I'm not shipping code I'm probably reading design history, hiking, or reverse-engineering a UI I admire.</p>
         </div>
-        <div class="about-photo tilt-card" id="photoCard">
-          <canvas class="glitch-canvas" id="glitchCanvas" width="200" height="200"></canvas>
-          <img src="websites/IMG_0679.jpeg" alt="Wyatt Bedor" class="about-photo-img">
-          <span class="about-initials">WB</span>
+        <div class="about-photos">
+          <div class="photo-freshman tilt-card" title="Freshman year">
+            <img src="websites/freshmen.jpeg" alt="Freshman year photo">
+          </div>
+
+          <div class="photo-arrow" aria-hidden="true">
+            <svg viewBox="0 0 72 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="g" x1="0" x2="1">
+                  <stop offset="0" stop-color="#FF6B9D"/>
+                  <stop offset="1" stop-color="#FF2D78"/>
+                </linearGradient>
+              </defs>
+              <path d="M2 14 H60" stroke="url(#g)" stroke-width="3" stroke-linecap="round" />
+              <path d="M54 8 L62 14 L54 20" fill="none" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+
+          <div class="photo-senior tilt-card" id="photoCard">
+            <canvas class="glitch-canvas" id="glitchCanvas" width="200" height="200"></canvas>
+            <img src="websites/Senior-2.png" alt="Senior year photo" class="about-photo-img">
+            <span class="about-initials">WB</span>
+          </div>
         </div>
       </div>
 
@@ -2313,21 +2434,21 @@ section.visible { opacity: 1; transform: none; }
         <div class="skill-group-label" style="margin-bottom:20px;">Experience</div>
         <div class="timeline">
           <div class="timeline-item">
-            <div class="timeline-period">2022 — Present</div>
+            <div class="timeline-period">2025-2026</div>
             <div class="timeline-title">Senior Full-Stack Engineer</div>
-            <div class="timeline-company">// Acme Corp · New York</div>
+            <div class="timeline-company">// Mr. Kilgore</div>
             <div class="timeline-desc">Led architecture of a real-time dashboard serving 200k+ users, reduced load times by 62% through aggressive code-splitting and edge caching strategies.</div>
           </div>
           <div class="timeline-item">
-            <div class="timeline-period">2020 — 2022</div>
-            <div class="timeline-title">Frontend Engineer</div>
-            <div class="timeline-company">// Bright Labs · Remote</div>
+            <div class="timeline-period">2024-2025</div>
+            <div class="timeline-title">Junior Developer</div>
+            <div class="timeline-company">// Mr. Kilgore</div>
             <div class="timeline-desc">Built component library used across 4 products. Shipped accessibility overhaul achieving WCAG AA compliance across all user-facing surfaces.</div>
           </div>
           <div class="timeline-item">
-            <div class="timeline-period">2019 — 2020</div>
+            <div class="timeline-period">2023-2024</div>
             <div class="timeline-title">Junior Developer</div>
-            <div class="timeline-company">// Pixel Studio · Brooklyn</div>
+            <div class="timeline-company">// Ms. Leonard</div>
             <div class="timeline-desc">Developed bespoke WordPress and Shopify themes for creative agencies. First professional exposure to performance optimisation and design systems.</div>
           </div>
         </div>
@@ -2339,31 +2460,41 @@ section.visible { opacity: 1; transform: none; }
       <div class="sec-num">04 — skills</div>
       <h2 class="sec-title scramble" data-text="Skills &amp; tools">Skills &amp; tools</h2>
 
-      <div class="skill-group">
-        <div class="skill-group-label">Frontend</div>
-        <div class="skills-row">
-          <span class="skill-pill">JavaScript</span>
-          <span class="skill-pill">Vue</span>
-          <span class="skill-pill">HTML</span>
-          <span class="skill-pill">CSS</span>
-          <span class="skill-pill">JSON</span>
+      <div class="skills-layout">
+        <div class="skills-groups">
+          <div class="skill-group">
+            <div class="skill-group-label">Frontend</div>
+            <div class="skills-row">
+              <span class="skill-pill">JavaScript</span>
+              <span class="skill-pill">Vue</span>
+              <span class="skill-pill">HTML</span>
+              <span class="skill-pill">CSS</span>
+              <span class="skill-pill">JSON</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Backend</div>
+            <div class="skills-row">
+              <span class="skill-pill">Design</span>
+              <span class="skill-pill">Color Scheme</span>
+              <span class="skill-pill">Animations</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Tooling</div>
+            <div class="skills-row">
+              <span class="skill-pill">Claude</span>
+              <span class="skill-pill">ChatGPT</span>
+              <span class="skill-pill">VS Code</span>
+              <span class="skill-pill">Replit</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Backend</div>
-        <div class="skills-row">
-          <span class="skill-pill">Design</span>
-          <span class="skill-pill">Color Scheme</span>
-          <span class="skill-pill">Animations</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Tooling</div>
-        <div class="skills-row">
-          <span class="skill-pill">Claude</span>
-          <span class="skill-pill">ChatGPT</span>
-          <span class="skill-pill">VS Code</span>
-          <span class="skill-pill">Replit</span>
+        <div class="skills-preview-card">
+          <h3>Image placeholder</h3>
+          <div class="skills-preview-placeholder">
+            <span><img src="websites/"></span>
+          </div>
         </div>
       </div>
 
