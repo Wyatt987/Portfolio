@@ -1695,22 +1695,35 @@ section.visible { opacity: 1; transform: none; }
 }
 .contact-gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 18px;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 18px 40px rgba(0,0,0,0.16);
+}
+.contact-gallery-title {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--text-primary);
 }
 .contact-image-card {
   position: relative;
   overflow: hidden;
-  border-radius: 16px;
-  min-height: 220px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 16px 28px rgba(0,0,0,0.14);
+  border-radius: 18px;
+  min-height: 300px;   /* change from 170px */
+  max-height: 350px;   /* change from 190px */
+  border: 1px dashed rgba(255,107,157,0.35);
+  background: rgba(255,45,120,0.04);
 }
 .contact-image-card img {
   width: 100%;
-  height: 100%;
+  height: 300px;   /* change from 170px */
   object-fit: cover;
+  object-position: center center;
   display: block;
   transition: transform 0.35s ease;
 }
@@ -2165,7 +2178,7 @@ section.visible { opacity: 1; transform: none; }
     <div class="s-name" id="sName">Wyatt<br>Bedor</div>
     <div class="s-role">Full-Stack Developer</div>
     <div class="s-role-jp">フルスタック開発者</div>
-    <p class="s-tagline">I build fast, accessible digital products with thoughtful UX.</p>
+    <p class="s-tagline">I build fast, accessible digital products with thoughtful designs and strong communication with clients.</p>
 
     <div class="nav-label">Sections</div>
     <nav id="desktopNav">
@@ -2448,19 +2461,19 @@ section.visible { opacity: 1; transform: none; }
             <div class="timeline-period">2025-2026</div>
             <div class="timeline-title">Senior Full-Stack Engineer</div>
             <div class="timeline-company">// Mr. Kilgore</div>
-            <div class="timeline-desc">Led architecture of a real-time dashboard serving 200k+ users, reduced load times by 62% through aggressive code-splitting and edge caching strategies.</div>
+            <div class="timeline-desc">I learned how to mix my work with AI, along with learning JSON, and Vue. I found a client and created a website that she uses till this day.</div>
           </div>
           <div class="timeline-item">
             <div class="timeline-period">2024-2025</div>
             <div class="timeline-title">Junior Developer</div>
             <div class="timeline-company">// Mr. Kilgore</div>
-            <div class="timeline-desc">Built component library used across 4 products. Shipped accessibility overhaul achieving WCAG AA compliance across all user-facing surfaces.</div>
+            <div class="timeline-desc">I further improved my abilities in css, bootstrap, and learned javascript.</div>
           </div>
           <div class="timeline-item">
             <div class="timeline-period">2023-2024</div>
             <div class="timeline-title">Junior Developer</div>
             <div class="timeline-company">// Ms. Leonard</div>
-            <div class="timeline-desc">Developed bespoke WordPress and Shopify themes for creative agencies. First professional exposure to performance optimisation and design systems.</div>
+            <div class="timeline-desc">I used Replit to develop and test my projects in a collaborative environment. I learned the basics of bootstrap, html, and css.</div>
           </div>
         </div>
       </div>
@@ -2552,11 +2565,9 @@ section.visible { opacity: 1; transform: none; }
         </div>
 
         <div class="contact-gallery">
+          <h3 class="contact-gallery-title">My favorite Japanese food</h3>
           <div class="contact-image-card">
-            <img src="websites/susho.png" alt="Contact preview 1">
-          </div>
-          <div class="contact-image-card">
-            <img src="websites/ramen.png" alt="Contact preview 2">
+            <img src="websites/ramen.png" alt="Favorite Japanese food">
           </div>
         </div>
       </div>
