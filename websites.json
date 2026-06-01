@@ -49,7 +49,7 @@
     "id": 7,
     "title": "President",
     "description": "Presidential information site",
-    "image": "websites/president.png",
+    "image": "websites/President.png",
     "url": "https://wyatt987.github.io/Preident3/"
   },
   {
@@ -70,7 +70,7 @@
     "id": 10,
     "title": "Knicks",
     "description": "New York Knicks fan site",
-    "image": "websites/knicks.png",
+    "image": "websites/Knicks.png",
     "url": "https://wyatt987.github.io/May---monthly/"
   },
   {
@@ -84,7 +84,7 @@
     "id": 12,
     "title": "Magic 8-ball",
     "description": "Fortune telling game",
-    "image": "websites/magic-8-ball.png",
+    "image": "websites/Magic-8-Ball.png",
     "url": "https://wyatt987.github.io/Magic-8-Ball-Project/"
   },
   {
@@ -98,14 +98,14 @@
     "id": 14,
     "title": "Split Calculator",
     "description": "Bill splitting calculator",
-    "image": "websites/split-calculator.png",
+    "image": "websites/Split-Calculator.png",
     "url": "https://wyatt987.github.io/April---Split/"
   },
   {
     "id": 15,
     "title": "Schedule",
     "description": "Scheduling application",
-    "image": "websites/schedule.png",
+    "image": "websites/Schedule.png",
     "url": "https://wyatt987.github.io/To-Do-List/"
   }
 
@@ -115,14 +115,14 @@
     "id": 16,
     "title": "Bobsdoll-trvel",
     "description": "Travel planning site",
-    "image": "websites/bobs-Doll-travel.png",
+    "image": "websites/Bobs-Doll-Travel.png",
     "url": "https://wyatt987.github.io/bobsdoll-travel/"
   },
   {
     "id": 17,
     "title": "Track Site",
     "description": "Track and field information",
-    "image": "websites/track site.png",
+    "image": "websites/Track site.png",
     "url": "https://alleniverson25.github.io/TRACKSITE/"
   }
   ],
@@ -131,7 +131,7 @@
     "id": 18,
     "title": "Criminology",
     "description": "Criminology study resources",
-    "image": "websites/criminology.png",
+    "image": "websites/Criminology.png",
     "url": "https://wyatt987.github.io/Criminology/"
   },
     {
